@@ -5,6 +5,10 @@ import App from './App.jsx'
 import { Login } from './pages/Login.jsx'
 import { Register } from './pages/Register.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { app } from './firebaseConfig/firebaseConfig.js'
+
+
+console.log(app);  
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
