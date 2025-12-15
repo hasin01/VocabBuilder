@@ -15,5 +15,6 @@ createRoot(document.getElementById('root')).render(
       <Route path="/VocabBuilder/register" element={<Register />} />
     </Routes>
   </BrowserRouter>
+
   </StrictMode>,
 )
