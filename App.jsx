@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Header } from './components/Header/Header';
+import { Header } from './src/components/Header/Header';
+import authUser from './src/hooks/Auth';
 
 function App() {
 
 
-
+authUser()
   return (
     <>
     <Header />
