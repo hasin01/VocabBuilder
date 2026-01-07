@@ -73,17 +73,18 @@ export default function BurgerMenu() {
       >
         <div className="flex items-center  justify-between px-4 py-3  ">
           {user ? (
-            <div className="text-[#FCFCFC] font-medium text-[20px] leading-[24px] text-left font-fixeltext-white font-medium text-lg leading-6 text-left font-fixel">
+            <div className= "flex items-center text-[#FCFCFC] font-medium text-[20px] leading-[24px] text-left font-fixeltext-white font-medium text-lg leading-6 text-left font-fixel">
               {user.fullName}
-                 <div className="bg-white w-8 h-8 flex items-center justify-center rounded-full ">
+                  <div className="bg-white ml-3 w-8 h-8 flex items-center justify-center rounded-full ">
             <FaUser color="#85AA9F    " />
           </div>
             </div>
+            
 
           ) : (
-            <></>
+            <div></div>
           )}
-       
+                  
           <button
             className="p-2 rounded hover:bg-gray-100"
             aria-label="Close menu"
@@ -123,13 +124,13 @@ export default function BurgerMenu() {
           >
             Training
           </NavLink>
-          <button className="flex items-center" onClick={()=>logOut()}>
+          {user ? <button className="flex items-center" onClick={()=>logOut()}>
             <div className=" text-white font-medium text-sm leading-5 text-left font-fixel">
             Log out
               </div>
             <GoArrowRight className="ml-1" color="white"/>
         
-          </button>
+          </button>: <></>}
           
         </nav>
       <Banner/>

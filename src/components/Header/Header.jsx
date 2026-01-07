@@ -12,8 +12,11 @@ export const Header = () => {
   return (
     <div className=" container mx-auto px-4 py-4 flex items-center justify-between ">
       <Logo />
-    { user? <div>{user.fullName}</div> :  <></>}
-<div className="bg-emerald-200 w-8 h-8 flex items-center justify-center rounded-full"  ><FaUser color="#FCFCFCB3" /></div>
+    { user? 
+    <div className='flex items-center 
+     '>{user.fullName} <div className="ml-3 bg-emerald-200 w-8 h-8 flex items-center justify-center rounded-full"  ><FaUser  color="#FCFCFCB3" /></div></div>
+     :  <div></div>}
+
     <BurgerMenu />
 
     </div>
