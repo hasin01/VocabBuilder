@@ -10,7 +10,8 @@ const WordForm = () => {
     <div className='flex flex-col gap-1.5'>
     <InputForm />
         <CustomSelect/>
-        <SimpleTable/>
+      <div className='mt-5'>
+        <SimpleTable/></div>
     </div>
   )
 }
