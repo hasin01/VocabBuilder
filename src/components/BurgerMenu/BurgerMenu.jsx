@@ -40,7 +40,7 @@ export default function BurgerMenu() {
   }, [open]);
 
   return (
-    <div>
+    <div className="z-1">
       <button
         ref={btnRef}
         className="md:hidden p-2 rounded focus:outline-none focus:ring-2 "

@@ -10,7 +10,7 @@ export const Header = () => {
 
 
   return (
-    <div className=" container mx-auto px-4 py-4 flex items-center justify-between ">
+    <div className=" container mb-8 mx-auto px-4 py-4 flex items-center justify-between ">
       <Logo />
     { user? 
     <div className='flex items-center 

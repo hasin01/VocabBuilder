@@ -1,14 +1,18 @@
 import React from 'react'
 import { Header } from '../components/Header/Header'
+import WordForm from '../components/WordForm/WordForm'
+
 
 const Dictionary = () => {
-  return (<>
+
+  
+  return (<div className=' container mx-auto px-4'>
       <Header />
-    <div>Dictionary</div>
+    <WordForm/>
 
 
 
-  </>
+  </div>
 
   )
 }
