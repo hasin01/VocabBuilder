@@ -5,7 +5,6 @@ import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { Banner } from "../Banner/Banner";
-import { IoArrowForwardSharp } from "react-icons/io5";
 import { GoArrowRight } from "react-icons/go";
 import { logOut } from "../../auth/services/signoutservices";
 import { useAuth } from "../../context/useAuth";
