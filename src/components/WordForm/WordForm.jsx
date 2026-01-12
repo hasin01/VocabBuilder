@@ -12,7 +12,7 @@ import AddWordForm from "../AddWordForm/AddWordForm";
 import { addWord } from "../words/service/addWords";
 import { useAuth } from "../../context/useAuth";
 import { getCategoryWords } from "../words/getCategoryWords";
-
+import deleteWords from ".././words/service/deleteWords"
 const WordForm = () => {
   const [isOpenModalAdd, setIsOpenModalAdd] = useState(false);
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
@@ -24,19 +24,27 @@ const WordForm = () => {
   const [wordsData, setWordsData] = useState([]);
   const user = useAuth();
 
+const handeldeleteWord = async (id,category)=>{
+ const updatedData = await getCategoryWords(user.userId, category); 
+    setWordsData(updatedData);
+
+ deleteWords(id,category,user.userId)
+}
+
+
   useEffect(() => {
     const getWords = async () => {
       if (!user || !user.userId || !category) return;
       const data = await getCategoryWords(user.userId, category);
       setWordsData(data);
-      console.log(data);
     };
 
     getWords();
-  }, [category, user?.userId]);
+  }, [category, user?.userId,wordsData]);
 
   const handleSelect = async (e) => {
     setCategory(e.value);
+
 
     const data = await getCategoryWords(user.userId, e.value);
     setWordsData(data);
@@ -91,7 +99,7 @@ const WordForm = () => {
         </button>
       </div>
       <div className="mt-5">
-        <FourColumnTable dataWord={wordsData} />
+        <FourColumnTable  handeldeleteWord={handeldeleteWord} category={category} dataWord={wordsData} user={user?.userId} />
       </div>
       <Modal isOpen={isOpenModalEdit} onClose={() => setIsOpenModalEdit(false)}>
         <button className="  " onClick={() => setIsOpenModalEdit(false)}>

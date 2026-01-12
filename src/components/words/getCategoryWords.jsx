@@ -15,7 +15,7 @@ try {
   
     const words = querySnapshot.docs.map((doc) => ({
       id: doc.id,
-      ...doc.data(),
+      ...doc.data(),  
     }));
 
 
