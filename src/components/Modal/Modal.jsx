@@ -23,7 +23,7 @@ const Modal = ({ isOpen, onClose, children }) => {
           inset: "auto",
           backgroundColor: "#85AA9F",
           borderRadius: "15px",
-          padding: "48px 16px",
+          padding: "28px 16px",
           maxWidth: "400px",
           width: "100%",
           borderColor:"#85AA9F"

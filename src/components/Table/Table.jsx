@@ -5,22 +5,16 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 
-// const data = [
-//   { id: 1, word: "Ada", translation: 25, progress: "Engineer", edit: "..." },
-//   { id: 2, word: "Ada", translation: 25, progress: "Engineer", edit: "..." },
-//   { id: 3, word: "Ada", translation: 25, progress: "Engineer", edit: "..." },
-//   { id: 4, word: "Ada", translation: 25, progress: "Engineer", edit: "..." },
-// ];
+
 
 const columns = [
-  { accessorKey: "word", header: "Word" },
+  { accessorKey: "text", header: "Word" },
   { accessorKey: "translation", header: "Translation" },
   { accessorKey: "progress", header: "Progress" },
   { accessorKey: "edit", header: " " },
 ];
 
 export default function FourColumnTable(props) {
-  console.log();
  const data= props.dataWord
   const table = useReactTable({
     data,

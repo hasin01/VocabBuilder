@@ -7,7 +7,6 @@ const useAuthUser = () => {
   const [userInfo, setUserInfo] = useState(null);
   const db = getFirestore(app);
   const auth = getAuth();
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -15,7 +14,8 @@ const useAuthUser = () => {
         const userRef = doc(db, "users", uid);
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
-          setUserInfo(docSnap.data());
+          setUserInfo({...docSnap.data() ,userId:uid});
+       
         } else {
           setUserInfo(null);
         }

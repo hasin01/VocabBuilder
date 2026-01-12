@@ -2,32 +2,22 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import ukrain from "../../img/ukraine.svg";
 import united from "../../img/united.svg";
-import CustomSelect from "../CustomSelect/CustomSelect";
 
-const AddWordForm = (props) => {
+const EditWordForm = (props) => {
   const [ukrainianWord, setUkrainianWord] = useState("");
   const [englishWord, setEnglishWord] = useState("");
-const [cat,setCat]=useState("")
+
   const handelFormData = (e) => {
     e.preventDefault();
     setEnglishWord("");
     setUkrainianWord("");
-    props.handleSavedWord(ukrainianWord,englishWord,cat)
+    props.handleSavedWord(ukrainianWord,englishWord)
     props.closeModal()
     
   };
 
-const handleSelect = (selectedOption) => {
-    setCat(selectedOption.value)
-  }
-
-
-
   return (
     <form onSubmit={(e) => handelFormData(e)} className="flex flex-col gap-5">
-    <div className=" text-white font-medium text-2xl font-macpaw" >Add word</div>
-    <p className="font-macpaw font-normal text-base text-white">Adding a new word to the dictionary is an important step in enriching the language base and expanding the vocabulary.</p>
-<CustomSelect variant="white" handleSelect={handleSelect}/>
       <div className="flex items-center gap-2 text-white font-medium text-sm leading-4 text-lef">
         <img src={ukrain} alt="united" className="w-7 h-7" />
         Ukrainian
@@ -70,4 +60,4 @@ const handleSelect = (selectedOption) => {
   );
 };
 
-export default AddWordForm;
+export default EditWordForm;
