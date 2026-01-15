@@ -99,7 +99,7 @@ export default function BurgerMenu() {
                 ? "rounded-[15px] bg-white px-2 py-2 "
                 : "text-white font-medium text-sm leading-5 text-left font-fixel"
             }
-            to="/VocabBuilder/dictionary"
+            to="/dictionary"
           >
             Dictionary
           </NavLink>
@@ -109,7 +109,7 @@ export default function BurgerMenu() {
                 ? "rounded-[15px] bg-white px-2 py-2"
                 : "text-white font-medium text-sm leading-5 text-left font-fixel"
             }
-            to="/VocabBuilder/recommend"
+            to="/recommend"
           >
             Recommend
           </NavLink>
@@ -119,7 +119,7 @@ export default function BurgerMenu() {
                 ? "rounded-[15px] bg-white px-2 py-2"
                 : "text-white font-medium text-sm leading-5 text-left font-fixel"
             }
-            to="/VocabBuilder/training"
+            to="/training"
           >
             Training
           </NavLink>

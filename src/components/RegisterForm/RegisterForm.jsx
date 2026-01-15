@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../Button/Button";
 import registerUser from "../../auth/services/registerservices";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const RegisterForm = () => {
   const {
@@ -83,7 +83,7 @@ const RegisterForm = () => {
           type="button"
           className="m-4 font-macpaw text-base font-bold underline text-greyText hover:text-black focus:text-black"
         >
-    <Link to="/VocabBuilder/Login">Login</Link>
+    <NavLink to="/Login">Login</NavLink>
 
         </button>
       </div>

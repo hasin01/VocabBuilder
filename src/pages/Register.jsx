@@ -12,17 +12,14 @@ const auth = getAuth();
 const user = auth.currentUser;
 
 if (user) {
-    // Пользователь авторизован, можно работать с его данными (uid, email и т.д.)
     console.log(user.uid);
 } else {
-    // Пользователь не авторизован
     console.log("Пользователь не вошел в систему");
 }
 
   return (
     <div className=' container mx-auto '>
         <Header />
-            <Link to="/VocabBuilder/">Главная</Link>
 <Banner/>
 <RegisterForm/>
     </div>
