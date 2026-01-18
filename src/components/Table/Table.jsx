@@ -9,7 +9,6 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
  
 
 
-
 export default function FourColumnTable(props) {
   
 const columns = [
@@ -40,7 +39,7 @@ const columns = [
   });
 
   return (
-   <table className="w-full box-border border rounded-tl-md bg-white ">
+   <table className="w-full box-border border rounded-tl-md bg-white container mx-auto px-4 ">
 
       <thead className="bg-[rgba(133,170,159,0.1)]">
         {table.getHeaderGroups().map((hg) => (

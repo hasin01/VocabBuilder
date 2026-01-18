@@ -6,7 +6,7 @@ import { MenuLogin } from '../components/MenuLogin/MenuLogin'
 
 export const Login = () => {
   return (
-    <div>
+    <div className=' container mx-auto px-4' >
         <Header />
    <Banner />
    <MenuLogin/>

@@ -23,12 +23,15 @@ const WordForm = () => {
   const [category, setCategory] = useState("");
   const [wordsData, setWordsData] = useState([]);
   const user = useAuth();
+  const [refreshKey, setRefreshKey] = useState(0);
 
 const handeldeleteWord = async (id,category)=>{
  const updatedData = await getCategoryWords(user.userId, category); 
     setWordsData(updatedData);
 
  deleteWords(id,category,user.userId)
+setRefreshKey(prev => prev + 1);
+
 }
 
 
@@ -40,7 +43,7 @@ const handeldeleteWord = async (id,category)=>{
     };
 
     getWords();
-  }, [category, user?.userId,wordsData]);
+  }, [category,refreshKey]);
 
   const handleSelect = async (e) => {
     setCategory(e.value);
@@ -57,10 +60,11 @@ const handeldeleteWord = async (id,category)=>{
       text: englishWord,
       translation: ukrainianWord,
     });
-
     setWords([...words, { word: ukrainianWord, translation: englishWord }]);
     const updatedData = await getCategoryWords(user.userId, categoryName);
+
     setWordsData(updatedData);
+
   };
 
   return (
@@ -81,7 +85,8 @@ const handeldeleteWord = async (id,category)=>{
       </p>
       <div className=" flex gap-7 ">
         <button
-          onClick={() => setIsOpenModalEdit(true)}
+          onClick={() => setIsOpenModalAdd(true)}
+
           className="flex items-center  font-[MacPawPixelDisplay]
             font-medium
             text-[16px]"
@@ -89,7 +94,8 @@ const handeldeleteWord = async (id,category)=>{
           Add word <GoPlus size={24} className="pl-1 text-buttonColor" />
         </button>
         <button
-          onClick={() => setIsOpenModalAdd(true)}
+
+
           className="  font-[MacPawPixelDisplay]
             font-medium
             text-[16px] flex items-center"

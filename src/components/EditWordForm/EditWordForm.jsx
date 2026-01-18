@@ -50,6 +50,7 @@ const EditWordForm = (props) => {
           Save
         </button>
         <button
+        onClick={()=> props.closeModal()}
           type="button"
           className=" w-full py-3 rounded-4xl border  border-white rounded-4xl text-white text-white font-[MacPawPixelDisplay] font-bold text-base leading-6"
         >
