@@ -1,21 +1,14 @@
-import React from 'react'
-import { Header } from '../components/Header/Header'
-import WordForm from '../components/WordForm/WordForm'
-
-
+import React from "react";
+import { Header } from "../components/Header/Header";
+import WordForm from "../components/WordForm/WordForm";
 
 const Dictionary = () => {
-
-  
-  return (<div className=' container mx-auto px-4'>
+  return (
+    <div className=" container mx-auto px-4 bg-bgMain ">
       <Header />
-    <WordForm/>
+      <WordForm />
+    </div>
+  );
+};
 
-
-
-  </div>
-
-  )
-}
-
-export default Dictionary
+export default Dictionary;

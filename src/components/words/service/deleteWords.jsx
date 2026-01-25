@@ -5,6 +5,7 @@ const db = getFirestore(app);
 
 const deleteWord = async (id, category, userId) => {
   try {
+    console.log(id, category, userId);
     const wordDocRef = doc(db, "users", userId, "categories", category, "words", id);
 
     console.log("Deleting document:", wordDocRef.path);

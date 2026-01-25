@@ -12,11 +12,19 @@ import AddWordForm from "../AddWordForm/AddWordForm";
 import { addWord } from "../words/service/addWords";
 import { useAuth } from "../../context/useAuth";
 import { getCategoryWords } from "../words/getCategoryWords";
-import deleteWords from ".././words/service/deleteWords"
+import deleteWords from ".././words/service/deleteWords";
 const WordForm = () => {
   const [isOpenModalAdd, setIsOpenModalAdd] = useState(false);
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
+  const [isOpenModalEditData, setIsOpenModalEditData] = useState(null);
+  const [isOpenModalEditDataId, setIsOpenModalEditDataId] = useState(null);
 
+
+const openModalEdit =(e)=>{
+setIsOpenModalEditDataId(e.id)
+  setIsOpenModalEditData(e)
+  setIsOpenModalEdit(true)
+}
   const closeModalEdit = () => setIsOpenModalEdit(false);
   const closeModalAdd = () => setIsOpenModalAdd(false);
   const [words, setWords] = useState([]);
@@ -25,15 +33,21 @@ const WordForm = () => {
   const user = useAuth();
   const [refreshKey, setRefreshKey] = useState(0);
 
-const handeldeleteWord = async (id,category)=>{
- const updatedData = await getCategoryWords(user.userId, category); 
-    setWordsData(updatedData);
+const handleDeleteWord = async (id, category) => {
+  console.log(id, category);
 
- deleteWords(id,category,user.userId)
-setRefreshKey(prev => prev + 1);
+  await deleteWords(id, category, user.userId);
+  const updatedData = await getCategoryWords(user.userId, category);
+  setWordsData(updatedData);
+
+updatePage()
+};
+
+const updatePage=()=>{
+console.log("object");
+  setRefreshKey(prev => prev + 1);
 
 }
-
 
   useEffect(() => {
     const getWords = async () => {
@@ -43,11 +57,10 @@ setRefreshKey(prev => prev + 1);
     };
 
     getWords();
-  }, [category,refreshKey]);
+  }, [category, refreshKey]);
 
   const handleSelect = async (e) => {
     setCategory(e.value);
-
 
     const data = await getCategoryWords(user.userId, e.value);
     setWordsData(data);
@@ -64,7 +77,6 @@ setRefreshKey(prev => prev + 1);
     const updatedData = await getCategoryWords(user.userId, categoryName);
 
     setWordsData(updatedData);
-
   };
 
   return (
@@ -73,7 +85,7 @@ setRefreshKey(prev => prev + 1);
       <CustomSelect variant="dark" handleSelect={handleSelect} />
       <p
         className=" mt-5 text-[rgba(18,20,23,0.5)]
-    font-[MacPawPixelDisplay]
+    font-macpaw
     text-[14px]
     font-medium
     leading-[17px]
@@ -86,17 +98,14 @@ setRefreshKey(prev => prev + 1);
       <div className=" flex gap-7 ">
         <button
           onClick={() => setIsOpenModalAdd(true)}
-
-          className="flex items-center  font-[MacPawPixelDisplay]
+          className="flex items-center  font-macpaw
             font-medium
             text-[16px]"
         >
           Add word <GoPlus size={24} className="pl-1 text-buttonColor" />
         </button>
         <button
-
-
-          className="  font-[MacPawPixelDisplay]
+          className="  font-macpaw
             font-medium
             text-[16px] flex items-center"
         >
@@ -105,7 +114,14 @@ setRefreshKey(prev => prev + 1);
         </button>
       </div>
       <div className="mt-5">
-        <FourColumnTable  handeldeleteWord={handeldeleteWord} category={category} dataWord={wordsData} user={user?.userId} />
+        <FourColumnTable
+    openModalEdit={openModalEdit}
+    closeModalEdit={closeModalEdit}
+          handleDeleteWord={handleDeleteWord}
+          category={category}
+          dataWord={wordsData}
+          user={user?.userId}
+        />
       </div>
       <Modal isOpen={isOpenModalEdit} onClose={() => setIsOpenModalEdit(false)}>
         <button className="  " onClick={() => setIsOpenModalEdit(false)}>
@@ -118,7 +134,11 @@ setRefreshKey(prev => prev + 1);
           />
         </button>
 
-        <EditWordForm
+        <EditWordForm 
+         updatePage={()=>updatePage()}
+        category={category}
+        isOpenModalEditDataId={isOpenModalEditDataId}
+        isOpenModalEditData={isOpenModalEditData}
           closeModal={closeModalEdit}
           handleSavedWord={handleSavedWord}
         />

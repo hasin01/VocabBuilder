@@ -15,6 +15,7 @@ export default {
         buttonHoverColor: '#A5C0B8',
         bgForm: ' rgba(133, 170, 159, 0.1)',
         greyText:"rgba(18, 20, 23, 0.5)",
+        bgMain:" rgba(248, 248, 248, 1)",
     },
 
 

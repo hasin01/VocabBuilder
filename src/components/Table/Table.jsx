@@ -5,12 +5,30 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import CardSelect from "../cardSelect/CardSelect";
 
  
 
 
 export default function FourColumnTable(props) {
   
+   const [ShowCardId, setShowCardId] = useState(null)
+
+
+
+const handleSelect = (e) =>{
+
+setShowCardId(prev => prev === e.id ? null : e.id)
+
+
+} ;  
+
+const closeCardSelect = ()=>{
+
+  setShowCardId(null)
+}
+
+
 const columns = [
   { accessorKey: "text", header: "Word" },
   { accessorKey: "translation", header: "Translation" },
@@ -19,13 +37,14 @@ const columns = [
     accessorKey: "edit",
     header: " ",
     cell: ({ row }) => (
-      <div  className="flex justify-center">
+      <div  className="flex justify-center relative ">
             <button 
-        className="px-2 py-2   "
-        onClick={() => props.handeldeleteWord(row.original.id ,props.category )}
+        className="px-2 py-2 "
+        onClick={() =>handleSelect(row.original) }
       >
-   <HiOutlineDotsHorizontal  />
+   <HiOutlineDotsHorizontal   />
       </button>
+  {row.original.id==ShowCardId    &&  <CardSelect  openModalEdit={()=>props.openModalEdit(row.original ,closeCardSelect())} handleDeleteWord={()=>props.handleDeleteWord(row.original.id,props.category )} />}
       </div>
 
     ),
@@ -37,6 +56,10 @@ const columns = [
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+
+
+
 
   return (
    <table className="w-full box-border border rounded-tl-md bg-white container mx-auto px-4 ">

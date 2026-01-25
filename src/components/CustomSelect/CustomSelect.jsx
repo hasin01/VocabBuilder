@@ -32,7 +32,7 @@ const CustomSelect = ({ variant = "dark" ,handleSelect}) => {
       <Select
         components={{
           DropdownIndicator: (props) => (
-            <CustomDropdownIndicator {...props} color={isDark ? "white" : "rgba(18,20,23,1)"} />
+            <CustomDropdownIndicator {...props} color={isDark ? "rgba(248, 248, 248, 1)" : "rgba(18,20,23,1)"} />
           ),
           IndicatorSeparator: CustomIndicatorSeparator,
         }}
@@ -64,7 +64,7 @@ const CustomSelect = ({ variant = "dark" ,handleSelect}) => {
             paddingRight: "10px",
             paddingTop: isDark ? "6px" : "8px",
             paddingBottom: isDark ? "6px" : "8px",
-            backgroundColor: isDark ? "transparent" : "white",
+            backgroundColor: isDark ? "transparent" : "rgba(248, 248, 248, 1)",
           }),
         }}
       />

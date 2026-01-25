@@ -2,23 +2,27 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import ukrain from "../../img/ukraine.svg";
 import united from "../../img/united.svg";
+import EditWords from "../words/service/EditWords";
+import { useAuth } from "../../context/useAuth";
 
-const EditWordForm = (props) => {
+
+const EditWordForm = ({isOpenModalEditData,closeModal,category,isOpenModalEditDataId,updatePage}) => {
   const [ukrainianWord, setUkrainianWord] = useState("");
   const [englishWord, setEnglishWord] = useState("");
+  const user = useAuth();
 
   const handelFormData = (e) => {
     e.preventDefault();
     setEnglishWord("");
     setUkrainianWord("");
-    props.handleSavedWord(ukrainianWord,englishWord)
-    props.closeModal()
-    
+    closeModal()
+    EditWords(user.userId,category,isOpenModalEditDataId,{text:ukrainianWord,translation:englishWord})
+   updatePage()
   };
 
   return (
-    <form onSubmit={(e) => handelFormData(e)} className="flex flex-col gap-5">
-      <div className="flex items-center gap-2 text-white font-medium text-sm leading-4 text-lef">
+    <form onSubmit={(e) => handelFormData(e)} className="flex flex-col gap-5 z-40 ">
+      <div className="flex items-center gap-2 text-white font-medium text-sm leading-4 text-lef ">
         <img src={ukrain} alt="united" className="w-7 h-7" />
         Ukrainian
       </div>
@@ -26,7 +30,7 @@ const EditWordForm = (props) => {
         onChange={(e) => setUkrainianWord(e.target.value)}
         value={ukrainianWord}
         type="text"
-        placeholder="Трохи, трішки"
+        placeholder={isOpenModalEditData.text}
         className=" py-3 pl-4 border border-white rounded-xl placeholder: text-white font-medium text-base "
       ></input>
       <div className="flex items-center gap-2 text-white font-medium text-sm leading-4 text-lef">
@@ -39,7 +43,7 @@ const EditWordForm = (props) => {
         onChange={(e) => setEnglishWord(e.target.value)}
         value={englishWord}
         type="text"
-        placeholder="A little bit"
+        placeholder={isOpenModalEditData.translation}
         className=" py-3 pl-4 border border-white rounded-xl placeholder: text-white  font-medium text-base"
       ></input>
       <div className="flex justify-between gap-2">
@@ -50,7 +54,7 @@ const EditWordForm = (props) => {
           Save
         </button>
         <button
-        onClick={()=> props.closeModal()}
+        onClick={()=> closeModal()}
           type="button"
           className=" w-full py-3 rounded-4xl border  border-white rounded-4xl text-white text-white font-[MacPawPixelDisplay] font-bold text-base leading-6"
         >
