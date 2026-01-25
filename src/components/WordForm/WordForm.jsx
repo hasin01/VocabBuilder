@@ -11,7 +11,7 @@ import EditWordForm from "../EditWordForm/EditWordForm";
 import AddWordForm from "../AddWordForm/AddWordForm";
 import { addWord } from "../words/service/addWords";
 import { useAuth } from "../../context/useAuth";
-import { getCategoryWords } from "../words/getCategoryWords";
+import { getCategoryWords } from "../words/service/getCategoryWords";
 import deleteWords from ".././words/service/deleteWords";
 const WordForm = () => {
   const [isOpenModalAdd, setIsOpenModalAdd] = useState(false);
@@ -28,10 +28,10 @@ setIsOpenModalEditDataId(e.id)
   const closeModalEdit = () => setIsOpenModalEdit(false);
   const closeModalAdd = () => setIsOpenModalAdd(false);
   const [words, setWords] = useState([]);
-  const [category, setCategory] = useState("");
   const [wordsData, setWordsData] = useState([]);
   const user = useAuth();
   const [refreshKey, setRefreshKey] = useState(0);
+const [category, setCategory] = useState("Adjective");
 
 const handleDeleteWord = async (id, category) => {
   console.log(id, category);
@@ -44,20 +44,22 @@ updatePage()
 };
 
 const updatePage=()=>{
-console.log("object");
   setRefreshKey(prev => prev + 1);
 
 }
 
-  useEffect(() => {
-    const getWords = async () => {
-      if (!user || !user.userId || !category) return;
-      const data = await getCategoryWords(user.userId, category);
-      setWordsData(data);
-    };
 
-    getWords();
-  }, [category, refreshKey]);
+
+useEffect(() => {
+  const fetchWords = async () => {
+
+    if (!user?.userId || !category) return;
+    const data = await getCategoryWords(user.userId, category);
+    setWordsData(data);
+  };
+
+  fetchWords();
+}, [user, category, refreshKey]);
 
   const handleSelect = async (e) => {
     setCategory(e.value);
@@ -114,14 +116,14 @@ console.log("object");
         </button>
       </div>
       <div className="mt-5">
-        <FourColumnTable
-    openModalEdit={openModalEdit}
-    closeModalEdit={closeModalEdit}
-          handleDeleteWord={handleDeleteWord}
-          category={category}
-          dataWord={wordsData}
-          user={user?.userId}
-        />
+ <FourColumnTable
+  openModalEdit={openModalEdit}
+  closeModalEdit={closeModalEdit}
+  handleDeleteWord={handleDeleteWord}
+  category={category}
+  dataWord={wordsData}
+  user={user?.userId}
+/>
       </div>
       <Modal isOpen={isOpenModalEdit} onClose={() => setIsOpenModalEdit(false)}>
         <button className="  " onClick={() => setIsOpenModalEdit(false)}>
