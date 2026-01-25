@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-table";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import CardSelect from "../cardSelect/CardSelect";
+import CircularProgress from "../ProgressWords/ProgressWords";
 
  
 
@@ -32,7 +33,16 @@ const closeCardSelect = ()=>{
 const columns = [
   { accessorKey: "text", header: "Word" },
   { accessorKey: "translation", header: "Translation" },
-  { accessorKey: "progress", header: "Progress" },
+  { accessorKey: "progress", header: "Progress",
+
+    cell: ({ row }) => (
+      <div  className="flex items-center justify-center">
+    
+ <CircularProgress value={1}/>
+      </div>
+
+    ),
+   },
   {
     accessorKey: "edit",
     header: " ",

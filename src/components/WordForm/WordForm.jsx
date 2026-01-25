@@ -74,6 +74,7 @@ useEffect(() => {
     addWord(user.userId, categoryName, {
       text: englishWord,
       translation: ukrainianWord,
+      level:1
     });
     setWords([...words, { word: ukrainianWord, translation: englishWord }]);
     const updatedData = await getCategoryWords(user.userId, categoryName);

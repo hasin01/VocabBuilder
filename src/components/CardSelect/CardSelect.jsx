@@ -9,7 +9,6 @@ const CardSelect = (props) => {
         <button
           onClick={() => {
             props.openModalEdit();
-            props.closeCardSelect();
           }}
           className="flex items-center gap-2 "
         >
@@ -20,7 +19,6 @@ const CardSelect = (props) => {
         <button
           onClick={() => {
             props.handleDeleteWord();
-            props.closeCardSelect();
           }}
           className="flex items-center gap-2"
         >

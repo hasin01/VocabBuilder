@@ -12,7 +12,7 @@ const [cat,setCat]=useState("")
     e.preventDefault();
     setEnglishWord("");
     setUkrainianWord("");
-    props.handleSavedWord(ukrainianWord,englishWord,cat)
+    props.handleSavedWord(ukrainianWord,englishWord,cat,)
     props.closeModal()
     
   };
