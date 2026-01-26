@@ -13,55 +13,49 @@ import { addWord } from "../words/service/addWords";
 import { useAuth } from "../../context/useAuth";
 import { getCategoryWords } from "../words/service/getCategoryWords";
 import deleteWords from ".././words/service/deleteWords";
-// import { getAllWords } from "../words/service/ getAllFiles";
+import useModalAll from "../../hooks/useModalAll";
+
 const WordForm = () => {
-  const [isOpenModalAdd, setIsOpenModalAdd] = useState(false);
-  const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
-  const [isOpenModalEditData, setIsOpenModalEditData] = useState(null);
-  const [isOpenModalEditDataId, setIsOpenModalEditDataId] = useState(null);
+  const {
+    isOpenModalAdd,
+    isOpenModalEdit,
+    isOpenModalEditData,
+    isOpenModalEditDataId,
+    openModalAdd,
+    closeModalAdd,
+    openModalEdit,
+    closeModalEdit,
+  } = useModalAll();
 
-
-const openModalEdit =(e)=>{
-setIsOpenModalEditDataId(e.id)
-  setIsOpenModalEditData(e)
-  setIsOpenModalEdit(true)
-}
-  const closeModalEdit = () => setIsOpenModalEdit(false);
-  const closeModalAdd = () => setIsOpenModalAdd(false);
   const [words, setWords] = useState([]);
   const [wordsData, setWordsData] = useState([]);
   const user = useAuth();
   const [refreshKey, setRefreshKey] = useState(0);
-const [category, setCategory] = useState("Adjective");
+  const [category, setCategory] = useState("Adjective");
 
-const handleDeleteWord = async (id, category) => {
-  console.log(id, category);
+  const handleDeleteWord = async (id, category) => {
+    console.log(id, category);
 
-  await deleteWords(id, category, user.userId);
-  const updatedData = await getCategoryWords(user.userId, category);
-  setWordsData(updatedData);
+    await deleteWords(id, category, user.userId);
+    const updatedData = await getCategoryWords(user.userId, category);
+    setWordsData(updatedData);
 
-updatePage()
-};
-
-const updatePage=()=>{
-  setRefreshKey(prev => prev + 1);
-
-}
-//  getAllWords("Ju13euvqadZvPLTJu7CrguBpqit1")
-
-
-
-useEffect(() => {
-  const fetchWords = async () => {
-
-    if (!user?.userId || !category) return;
-    const data = await getCategoryWords(user.userId, category);
-    setWordsData(data);
+    updatePage();
   };
 
-  fetchWords();
-}, [user, category, refreshKey]);
+  const updatePage = () => {
+    setRefreshKey((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    const fetchWords = async () => {
+      if (!user?.userId || !category) return;
+      const data = await getCategoryWords(user.userId, category);
+      setWordsData(data);
+    };
+
+    fetchWords();
+  }, [user, category, refreshKey]);
 
   const handleSelect = async (e) => {
     setCategory(e.value);
@@ -76,8 +70,8 @@ useEffect(() => {
     addWord(user.userId, categoryName, {
       text: englishWord,
       translation: ukrainianWord,
-      level:1,
-      userId:user.userId
+      level: 1,
+      userId: user.userId,
     });
     setWords([...words, { word: ukrainianWord, translation: englishWord }]);
     const updatedData = await getCategoryWords(user.userId, categoryName);
@@ -103,7 +97,7 @@ useEffect(() => {
       </p>
       <div className=" flex gap-7 ">
         <button
-          onClick={() => setIsOpenModalAdd(true)}
+          onClick={openModalAdd}
           className="flex items-center  font-macpaw
             font-medium
             text-[16px]"
@@ -120,40 +114,40 @@ useEffect(() => {
         </button>
       </div>
       <div className="mt-5">
- <FourColumnTable
-  openModalEdit={openModalEdit}
-  closeModalEdit={closeModalEdit}
-  handleDeleteWord={handleDeleteWord}
-  category={category}
-  dataWord={wordsData}
-  user={user?.userId}
-/>
+        <FourColumnTable
+          openModalEdit={openModalEdit}
+          closeModalEdit={closeModalEdit}
+          handleDeleteWord={handleDeleteWord}
+          category={category}
+          dataWord={wordsData}
+          user={user?.userId}
+        />
       </div>
-      <Modal isOpen={isOpenModalEdit} onClose={() => setIsOpenModalEdit(false)}>
-        <button className="  " onClick={() => setIsOpenModalEdit(false)}>
+      <Modal isOpen={isOpenModalEdit} onClose={closeModalEdit}>
+        <button className="  " onClick={closeModalEdit}>
           {" "}
           <RxCross2
-            onClick={() => setIsOpenModalEdit(false)}
+            onClick={closeModalEdit}
             color="white"
             size={25}
             className=" absolute  right-3 top-3"
           />
         </button>
 
-        <EditWordForm 
-         updatePage={()=>updatePage()}
-        category={category}
-        isOpenModalEditDataId={isOpenModalEditDataId}
-        isOpenModalEditData={isOpenModalEditData}
+        <EditWordForm
+          updatePage={() => updatePage()}
+          category={category}
+          isOpenModalEditDataId={isOpenModalEditDataId}
+          isOpenModalEditData={isOpenModalEditData}
           closeModal={closeModalEdit}
           handleSavedWord={handleSavedWord}
         />
       </Modal>
-      <Modal isOpen={isOpenModalAdd} onClose={() => setIsOpenModalAdd(false)}>
-        <button className="  " onClick={() => setIsOpenModalAdd(false)}>
+      <Modal isOpen={isOpenModalAdd} onClose={closeModalAdd}>
+        <button className="  " onClick={closeModalAdd}>
           {" "}
           <RxCross2
-            onClick={() => setIsOpenModalAdd(false)}
+            onClick={closeModalAdd}
             color="white"
             size={25}
             className=" absolute  right-3 top-3"
