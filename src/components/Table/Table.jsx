@@ -5,9 +5,8 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import CardSelect from "../cardSelect/CardSelect";
 import CircularProgress from "../ProgressWords/ProgressWords";
-
+import CardSelect from "../CardSelect/CardSelect";
  
 
 

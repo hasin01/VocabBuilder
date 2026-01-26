@@ -13,6 +13,7 @@ import { addWord } from "../words/service/addWords";
 import { useAuth } from "../../context/useAuth";
 import { getCategoryWords } from "../words/service/getCategoryWords";
 import deleteWords from ".././words/service/deleteWords";
+// import { getAllWords } from "../words/service/ getAllFiles";
 const WordForm = () => {
   const [isOpenModalAdd, setIsOpenModalAdd] = useState(false);
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
@@ -47,6 +48,7 @@ const updatePage=()=>{
   setRefreshKey(prev => prev + 1);
 
 }
+//  getAllWords("Ju13euvqadZvPLTJu7CrguBpqit1")
 
 
 
@@ -74,7 +76,8 @@ useEffect(() => {
     addWord(user.userId, categoryName, {
       text: englishWord,
       translation: ukrainianWord,
-      level:1
+      level:1,
+      userId:user.userId
     });
     setWords([...words, { word: ukrainianWord, translation: englishWord }]);
     const updatedData = await getCategoryWords(user.userId, categoryName);
