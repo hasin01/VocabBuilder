@@ -66,10 +66,10 @@ export default function FourColumnTable(props) {
   });
 
   return (
-   <div className="w-full">
+   <div className="w-full overflow-x-auto">
   {props.loading ? <Loading/> : null}
 
-  <table className="w-full border rounded-md bg-white">
+  <table className="w-full border rounded-md bg-white table-fixed">
     <thead className="bg-[rgba(133,170,159,0.1)]">
       {table.getHeaderGroups().map((hg) => (
         <tr key={hg.id}>
@@ -81,6 +81,7 @@ export default function FourColumnTable(props) {
                 px-2 py-1 text-xs
                 sm:px-3 sm:py-2 sm:text-sm
                 md:px-4 md:py-2 md:text-base
+                w-1/4 break-words
               "
             >
               {flexRender(header.column.columnDef.header, header.getContext())}
@@ -103,6 +104,7 @@ export default function FourColumnTable(props) {
                 px-2 py-1 text-xs
                 sm:px-3 sm:py-2 sm:text-sm
                 md:px-4 md:py-2 md:text-base
+                break-words overflow-wrap-break-word max-w-0
               "
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
