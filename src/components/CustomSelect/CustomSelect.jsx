@@ -29,7 +29,6 @@ const CustomIndicatorSeparator = () => null
 const CustomSelect = ({ variant = "dark" ,handleSelect,value }) => {
 
 
-console.log(value);
   const isDark = variant === "white"
 
   return (

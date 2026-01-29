@@ -41,9 +41,9 @@ export const useWords = () => {
       userId: user.userId,
     });
     setWords([...words, { word: ukrainianWord, translation: englishWord }]);
-    const updatedData = await getCategoryWords(user.userId, categoryName);
+    // const updatedData = await getCategoryWords(user.userId, categoryName);
 
-    setWordsData(updatedData);
+    // setWordsData(updatedData);
   };
   return {
     category,

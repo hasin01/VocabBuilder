@@ -15,6 +15,7 @@ const [cat,setCat]=useState("")
     props.handleSavedWord(ukrainianWord,englishWord,cat,)
     props.closeModal()
     
+    
   };
 const handleSelect = (selectedOption) => {
     setCat(selectedOption.value)

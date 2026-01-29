@@ -7,7 +7,7 @@ export const addWord = async (userId, categoryName, wordObj) => {
   const categoryDocRef = doc(db, "users", userId, "categories", categoryName);
 
   const wordsCollectionRef = collection(categoryDocRef, "words");
-console.log(wordObj);
+
   const newWordRef = await addDoc(wordsCollectionRef, wordObj);
 
   console.log("Word added with ID:", newWordRef.id);
