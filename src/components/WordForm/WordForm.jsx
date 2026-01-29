@@ -13,6 +13,7 @@ import { useAuth } from "../../context/useAuth";
 
 import useModalAll from "../../hooks/useModalAll";
 import { useWords } from "../../hooks/Words";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -33,13 +34,13 @@ const WordForm = () => {
 const {
   category,
 wordsData,
+loading,
+error,
 handleDeleteWord,
 handleSavedWord,handleSelect
 
 } = useWords()
 
-
-  
 
 
   let total = 20;
@@ -88,6 +89,7 @@ handleSavedWord,handleSelect
           category={category}
           dataWord={wordsData}
           user={user?.userId}
+          loading={loading}
         />
       </div>
       <Modal isOpen={isOpenModalEdit} onClose={closeModalEdit}>
@@ -125,6 +127,18 @@ handleSavedWord,handleSelect
           handleSavedWord={handleSavedWord}
         />
       </Modal>
+<ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
     </div>
   );
 };

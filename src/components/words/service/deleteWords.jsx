@@ -12,7 +12,6 @@ const deleteWord = async (id, category, userId) => {
 
     await deleteDoc(wordDocRef);
 
-    console.log("Word deleted successfully");
   } catch (error) {
     console.error("Error deleting word:", error);
   }

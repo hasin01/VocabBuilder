@@ -11,7 +11,6 @@ export const getCategoryWords = async (userId, category = "Adjective") => {
       id: doc.id,
       ...doc.data(),
     }));
-    console.log(words);
 
     return words;
   } catch (error) {

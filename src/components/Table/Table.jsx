@@ -7,6 +7,7 @@ import {
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import CircularProgress from "../ProgressWords/ProgressWords";
 import CardSelect from "../CardSelect/CardSelect";
+import Loading from "../Loading/Loading";
 
 export default function FourColumnTable(props) {
   const [ShowCardId, setShowCardId] = useState(null);
@@ -66,6 +67,8 @@ export default function FourColumnTable(props) {
 
   return (
    <div className="w-full">
+  {props.loading ? <Loading/> : null}
+
   <table className="w-full border rounded-md bg-white">
     <thead className="bg-[rgba(133,170,159,0.1)]">
       {table.getHeaderGroups().map((hg) => (
