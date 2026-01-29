@@ -5,8 +5,9 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const user = useAuthUser();
+  
   return (
-    <AuthContext.Provider value={user}>
+    <AuthContext.Provider value={user} >
       {children}
     </AuthContext.Provider>
   );

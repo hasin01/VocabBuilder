@@ -1,6 +1,7 @@
 import React from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import Select, { components } from 'react-select'
+import { useWords } from '../../hooks/Words'
 
 const options = [
   { value: 'Verb', label: 'Verb' },
@@ -25,8 +26,12 @@ const CustomDropdownIndicator = ({ color, ...props }) => {
 }
 const CustomIndicatorSeparator = () => null
 
-const CustomSelect = ({ variant = "dark" ,handleSelect}) => {
+const CustomSelect = ({ variant = "dark" ,handleSelect,value }) => {
+
+
+console.log(value);
   const isDark = variant === "white"
+
   return (
     <div>
       <Select
@@ -37,7 +42,6 @@ const CustomSelect = ({ variant = "dark" ,handleSelect}) => {
           IndicatorSeparator: CustomIndicatorSeparator,
         }}
         options={options}
-   
         placeholder="Categories"
 
            onChange={handleSelect} 

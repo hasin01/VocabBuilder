@@ -9,11 +9,12 @@ import { RxCross2 } from "react-icons/rx";
 import FourColumnTable from "../Table/Table";
 import EditWordForm from "../EditWordForm/EditWordForm";
 import AddWordForm from "../AddWordForm/AddWordForm";
-import { addWord } from "../words/service/addWords";
 import { useAuth } from "../../context/useAuth";
-import { getCategoryWords } from "../words/service/getCategoryWords";
-import deleteWords from ".././words/service/deleteWords";
+
 import useModalAll from "../../hooks/useModalAll";
+import { useWords } from "../../hooks/Words";
+
+
 
 const WordForm = () => {
   const {
@@ -27,62 +28,28 @@ const WordForm = () => {
     closeModalEdit,
   } = useModalAll();
 
-  const [words, setWords] = useState([]);
-  const [wordsData, setWordsData] = useState([]);
+
   const user = useAuth();
-  const [refreshKey, setRefreshKey] = useState(0);
-  const [category, setCategory] = useState("Adjective");
+const {
+  category,
+wordsData,
+handleDeleteWord,
+handleSavedWord,handleSelect
 
-  const handleDeleteWord = async (id, category) => {
-    console.log(id, category);
+} = useWords()
 
-    await deleteWords(id, category, user.userId);
-    const updatedData = await getCategoryWords(user.userId, category);
-    setWordsData(updatedData);
 
-    updatePage();
-  };
+  
 
-  const updatePage = () => {
-    setRefreshKey((prev) => prev + 1);
-  };
-
-  useEffect(() => {
-    const fetchWords = async () => {
-      if (!user?.userId || !category) return;
-      const data = await getCategoryWords(user.userId, category);
-      setWordsData(data);
-    };
-
-    fetchWords();
-  }, [user, category, refreshKey]);
-
-  const handleSelect = async (e) => {
-    setCategory(e.value);
-
-    const data = await getCategoryWords(user.userId, e.value);
-    setWordsData(data);
-  };
 
   let total = 20;
 
-  const handleSavedWord = async (ukrainianWord, englishWord, categoryName) => {
-    addWord(user.userId, categoryName, {
-      text: englishWord,
-      translation: ukrainianWord,
-      level: 1,
-      userId: user.userId,
-    });
-    setWords([...words, { word: ukrainianWord, translation: englishWord }]);
-    const updatedData = await getCategoryWords(user.userId, categoryName);
 
-    setWordsData(updatedData);
-  };
 
   return (
     <div className="flex flex-col gap-1.5">
       <InputForm />
-      <CustomSelect variant="dark" handleSelect={handleSelect} />
+      <CustomSelect value={category} variant="dark" handleSelect={handleSelect} />
       <p
         className=" mt-5 text-[rgba(18,20,23,0.5)]
     font-macpaw
@@ -135,7 +102,6 @@ const WordForm = () => {
         </button>
 
         <EditWordForm
-          updatePage={() => updatePage()}
           category={category}
           isOpenModalEditDataId={isOpenModalEditDataId}
           isOpenModalEditData={isOpenModalEditData}

@@ -6,7 +6,7 @@ import EditWords from "../words/service/EditWords";
 import { useAuth } from "../../context/useAuth";
 
 
-const EditWordForm = ({isOpenModalEditData,closeModal,category,isOpenModalEditDataId,updatePage}) => {
+const EditWordForm = ({isOpenModalEditData,closeModal,category,isOpenModalEditDataId}) => {
   const [ukrainianWord, setUkrainianWord] = useState("");
   const [englishWord, setEnglishWord] = useState("");
   const user = useAuth();
@@ -17,7 +17,6 @@ const EditWordForm = ({isOpenModalEditData,closeModal,category,isOpenModalEditDa
     setUkrainianWord("");
     closeModal()
     EditWords(user.userId,category,isOpenModalEditDataId,{text:ukrainianWord,translation:englishWord})
-   updatePage()
   };
 
   return (

@@ -16,7 +16,6 @@ const [cat,setCat]=useState("")
     props.closeModal()
     
   };
-
 const handleSelect = (selectedOption) => {
     setCat(selectedOption.value)
   }
