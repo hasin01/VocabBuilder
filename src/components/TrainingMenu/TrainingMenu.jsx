@@ -1,6 +1,6 @@
 import React from "react";
 import InputTraining from "../InputTraining/InputTraining";
-import Level from "../level/level";
+import Level from "../Level/Level";
 import LanguageIcon from "../LanguageIcon/LanguageIcon";
 import { Button } from "../Button/Button";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
