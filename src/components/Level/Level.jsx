@@ -1,11 +1,11 @@
 import React from "react";
 
-const CircularProgress = ({
+const Level = ({
   value,
-  max = 300, 
-  size = 30,
-  strokeWidth = 4,
-  color = "text-green-500"
+  max = 300,
+  size = 46,
+  strokeWidth = 5,
+  color = "text-green-500",
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -14,7 +14,10 @@ const CircularProgress = ({
   const offset = circumference - (progress / max) * circumference;
 
   return (
-    <div className="relative" style={{ width: size, height: size }}>
+    <div
+      className="relative flex items-center justify-center mb-2"
+      style={{ width: size, height: size }}
+    >
       <svg className="w-full h-full" viewBox={`0 0 ${size} ${size}`}>
         <circle
           className="text-gray-300"
@@ -37,9 +40,10 @@ const CircularProgress = ({
           strokeDashoffset={offset}
         />
       </svg>
-      
+
+      <span className="absolute font-bold left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">20</span>
     </div>
   );
 };
 
-export default CircularProgress;
+export default Level;
