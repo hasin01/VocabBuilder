@@ -8,11 +8,13 @@ import Dictionary from './pages/Dictionary.jsx'
 import Recommend from './pages/Recommend.jsx'
 import Training from './pages/Training.jsx'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
-import AuthProvider from './context/auth/AuthContext.jsx';
+import {AppProviders}  from './context/AppProviders.jsx';
 
 function App() {
+
+
   return (
- <AuthProvider>
+ <AppProviders>
   <Router>
     <Routes>
       <Route element={<PublicRoute />}>
@@ -29,7 +31,7 @@ function App() {
 
     </Routes>
   </Router>
-</AuthProvider>
+</AppProviders>
   );
 }
 

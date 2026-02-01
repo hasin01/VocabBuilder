@@ -10,13 +10,17 @@ import EditWordForm from "../EditWordForm/EditWordForm";
 import AddWordForm from "../AddWordForm/AddWordForm";
 
 import useModalAll from "../../hooks/useModalAll";
-import { useWords } from "../../hooks/Words";
+import { useWords } from "../../hooks/useWords";
 import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../context/auth/useAuth";
+import useCategorySet from "../../hooks/useCategorySet";
 
 
 
 const WordForm = () => {
+
+  
+  
   const {
     isOpenModalAdd,
     isOpenModalEdit,
