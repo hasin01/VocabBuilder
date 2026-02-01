@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/useAuth";
-import { getCategoryWords } from "../components/words/service/getCategoryWords";
-
-import { addWord } from "../components/words/service/addWords";
-import deleteWord from "../components/words/service/deleteWords";
+import { getCategoryWords } from "../services/words/getCategoryWords";
+import { addWord } from "../services/words/addWords";
+import deleteWord from "../services/words/deleteWords";
 import { toast } from "react-toastify";
 
 export const useWords = () => {
@@ -14,8 +13,6 @@ export const useWords = () => {
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-
 
   useEffect(() => {
     const fetchWords = async () => {
@@ -72,7 +69,7 @@ export const useWords = () => {
         level: 1,
         userId: user.userId,
       });
-      
+
       setWords([...words, { word: ukrainianWord, translation: englishWord }]);
       const updatedData = await getCategoryWords(user.userId, categoryName);
       setWordsData(updatedData);
@@ -93,6 +90,5 @@ export const useWords = () => {
     handleDeleteWord,
     handleSavedWord,
     handleSelect,
-    
   };
 };

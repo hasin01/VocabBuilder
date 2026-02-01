@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import CustomSelect from "../CustomSelect/CustomSelect";
 import InputForm from "../InputForm/InputForm";
 import { GoPlus } from "react-icons/go";
@@ -35,7 +34,6 @@ const {
   category,
 wordsData,
 loading,
-error,
 handleDeleteWord,
 handleSavedWord,handleSelect
 

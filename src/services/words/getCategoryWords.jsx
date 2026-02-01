@@ -1,5 +1,5 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore";
-import { app } from "../../../firebaseConfig/firebaseConfig";
+import { app } from "../../firebaseConfig/firebaseConfig";
 
 const db = getFirestore(app);
 

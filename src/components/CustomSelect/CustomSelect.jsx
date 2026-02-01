@@ -1,6 +1,6 @@
 import React from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
-import Select, { components } from "react-select";
+import Select, { components as Components } from "react-select";
 
 const options = [
   { value: "Verb", label: "Verb" },
@@ -11,16 +11,16 @@ const options = [
   { value: "Numerals", label: "Numerals" },
   { value: "Adverb", label: "Adverb" },
   { value: "Preposition", label: "Preposition" },
-  { value: "Conjuction", label: "Conjuction" },
+  { value: "Conjunction", label: "Conjunction" },
   { value: "Phrasal verb", label: "Phrasal verb" },
   { value: "Functional phrase", label: "Functional phrase" },
 ];
 
 const CustomDropdownIndicator = ({ color, ...props }) => {
   return (
-    <components.DropdownIndicator {...props}>
+    <Components.DropdownIndicator {...props}>
       <RiArrowDownSLine size={"30px"} style={{ color }} />
-    </components.DropdownIndicator>
+    </Components.DropdownIndicator>
   );
 };
 const CustomIndicatorSeparator = () => null;

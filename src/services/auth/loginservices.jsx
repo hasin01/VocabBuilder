@@ -7,13 +7,10 @@ const auth = getAuth();
 const  loginUser= async ({email, password})=>{ 
 
 await signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
+  .then(() => {
   })
   .catch((error) => {
-    const errorCode = error.code;
     console.log(error);
-    const errorMessage = error.message;
   });
 
 

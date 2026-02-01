@@ -1,6 +1,5 @@
-import React from 'react'
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
-import { app } from '../../../firebaseConfig/firebaseConfig';
+import { app } from '../../firebaseConfig/firebaseConfig';
 
 const  EditWords = async (userId,categoryName ,idWords ,textWords)  => {
 

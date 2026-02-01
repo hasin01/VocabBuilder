@@ -1,9 +1,8 @@
-import React, { createContext } from "react";
+import React from "react";
+import { AuthContext } from "./AuthContextDefinition.jsx";
 import useAuthUser from "../hooks/Auth";
 
-export const AuthContext = createContext(null);
-
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const user = useAuthUser();
   
   return (
@@ -12,3 +11,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;

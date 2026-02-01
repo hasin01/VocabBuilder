@@ -7,7 +7,6 @@ import {
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import CircularProgress from "../ProgressWords/ProgressWords";
 import CardSelect from "../CardSelect/CardSelect";
-import Loading from "../Loading/Loading";
 
 export default function FourColumnTable(props) {
   const [ShowCardId, setShowCardId] = useState(null);
@@ -26,7 +25,7 @@ export default function FourColumnTable(props) {
     {
       accessorKey: "progress",
       header: "Progress",
-      cell: ({ row }) => (
+      cell: () => (
         <div className="flex items-center justify-center">
           <CircularProgress value={1} />
         </div>
@@ -66,54 +65,55 @@ export default function FourColumnTable(props) {
   });
 
   return (
-   <div className="w-full overflow-x-auto">
-  {props.loading ? <Loading/> : null}
-
-  <table className="w-full border rounded-md bg-white table-fixed">
-    <thead className="bg-[rgba(133,170,159,0.1)]">
-      {table.getHeaderGroups().map((hg) => (
-        <tr key={hg.id}>
-          {hg.headers.map((header) => (
-            <th
-              key={header.id}
-              className="
+    <div className="w-full overflow-x-auto">
+      <table className="w-full border rounded-md bg-white table-fixed">
+        <thead className="bg-[rgba(133,170,159,0.1)]">
+          {table.getHeaderGroups().map((hg) => (
+            <tr key={hg.id}>
+              {hg.headers.map((header) => (
+                <th
+                  key={header.id}
+                  className="
                 border border-gray-300 text-left
                 px-2 py-1 text-xs
                 sm:px-3 sm:py-2 sm:text-sm
                 md:px-4 md:py-2 md:text-base
                 w-1/4 break-words
               "
-            >
-              {flexRender(header.column.columnDef.header, header.getContext())}
-            </th>
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </th>
+              ))}
+            </tr>
           ))}
-        </tr>
-      ))}
-    </thead>
-    <tbody>
-      {table.getRowModel().rows.map((row) => (
-        <tr
-          key={row.id}
-          className="hover:bg-gray-50 odd:bg-white even:bg-gray-100"
-        >
-          {row.getVisibleCells().map((cell) => (
-            <td
-              key={cell.id}
-              className="
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr
+              key={row.id}
+              className="hover:bg-gray-50 odd:bg-white even:bg-gray-100"
+            >
+              {row.getVisibleCells().map((cell) => (
+                <td
+                  key={cell.id}
+                  className="
                 border border-gray-300
                 px-2 py-1 text-xs
                 sm:px-3 sm:py-2 sm:text-sm
                 md:px-4 md:py-2 md:text-base
                 break-words overflow-wrap-break-word max-w-0
               "
-            >
-              {flexRender(cell.column.columnDef.cell, cell.getContext())}
-            </td>
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
           ))}
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+        </tbody>
+      </table>
+    </div>
   );
 }

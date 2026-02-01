@@ -6,7 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { Banner } from "../Banner/Banner";
 import { GoArrowRight } from "react-icons/go";
-import { logOut } from "../../auth/services/signoutservices";
+import { logOut } from "../../services/auth/signoutservices";
 import { useAuth } from "../../context/useAuth";
 
 export default function BurgerMenu() {
@@ -72,7 +72,7 @@ export default function BurgerMenu() {
       >
         <div className="flex items-center  justify-between px-4 py-3  ">
           {user ? (
-            <div className= "flex items-center text-[#FCFCFC] font-medium text-[20px] leading-[24px] text-left font-fixeltext-white font-medium text-lg leading-6 text-left font-fixel">
+            <div className="flex items-center text-[#FCFCFC] font-medium text-[20px] leading-6 text-left font-fixel">
               {user.fullName}
                   <div className="bg-white ml-3 w-8 h-8 flex items-center justify-center rounded-full ">
             <FaUser color="#85AA9F    " />

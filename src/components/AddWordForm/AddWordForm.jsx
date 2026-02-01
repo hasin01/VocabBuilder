@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 import ukrain from "../../img/ukraine.svg";
 import united from "../../img/united.svg";
 import CustomSelect from "../CustomSelect/CustomSelect";

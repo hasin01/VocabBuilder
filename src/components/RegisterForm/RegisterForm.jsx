@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../Button/Button";
-import registerUser from "../../auth/services/registerservices";
+import registerUser from "../../services/auth/registerservices";
 import { Link, NavLink } from "react-router-dom";
 
 const RegisterForm = () => {

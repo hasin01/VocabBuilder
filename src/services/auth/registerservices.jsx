@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, getFirestore, setDoc, collection } from "firebase/firestore/lite";
+import { doc, getFirestore, setDoc, collection } from "firebase/firestore";
 import { app } from "../../firebaseConfig/firebaseConfig";
 
 const registerUser = async ({ name, email, password }) => {
@@ -12,7 +12,7 @@ const registerUser = async ({ name, email, password }) => {
     { value: "Numerals", label: "Numerals" },
     { value: "Adverb", label: "Adverb" },
     { value: "Preposition", label: "Preposition" },
-    { value: "Conjuction", label: "Conjuction" },
+    { value: "Conjunction", label: "Conjunction" },
     { value: "Phrasal verb", label: "Phrasal verb" },
     { value: "Functional phrase", label: "Functional phrase" },
   ];
