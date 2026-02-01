@@ -13,14 +13,13 @@ import useModalAll from "../../hooks/useModalAll";
 import { useWords } from "../../hooks/useWords";
 import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../context/auth/useAuth";
-import useCategorySet from "../../hooks/useCategorySet";
-
-
+import { useCategory } from "../../context/category/useCategorySet";
 
 const WordForm = () => {
+  const { category } = useCategory();
+  
 
-  
-  
+
   const {
     isOpenModalAdd,
     isOpenModalEdit,
@@ -32,27 +31,22 @@ const WordForm = () => {
     closeModalEdit,
   } = useModalAll();
 
-
   const user = useAuth();
-const {
-  category,
-wordsData,
-loading,
-handleDeleteWord,
-handleSavedWord,handleSelect
-
-} = useWords()
-
-
+  const {
+    wordsData,
+    loading,
+    handleDeleteWord,
+    handleSavedWord,
+  } = useWords();
 
   let total = 20;
-
-
-
+  console.log(category);
   return (
     <div className="flex flex-col gap-1.5">
       <InputForm />
-      <CustomSelect value={category} variant="dark" handleSelect={handleSelect} />
+      <CustomSelect
+        variant="dark"
+      />
       <p
         className=" mt-5 text-[rgba(18,20,23,0.5)]
     font-macpaw
@@ -129,18 +123,18 @@ handleSavedWord,handleSelect
           handleSavedWord={handleSavedWord}
         />
       </Modal>
-<ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
-/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

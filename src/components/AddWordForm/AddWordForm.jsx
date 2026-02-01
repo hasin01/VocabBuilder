@@ -2,22 +2,25 @@ import React, { useState } from "react";
 import ukrain from "../../img/ukraine.svg";
 import united from "../../img/united.svg";
 import CustomSelect from "../CustomSelect/CustomSelect";
+import { useCategory } from "../../context/category/useCategorySet";
 
 const AddWordForm = (props) => {
+  const { category, handleSetCategory } = useCategory();
+
   const [ukrainianWord, setUkrainianWord] = useState("");
   const [englishWord, setEnglishWord] = useState("");
-const [cat,setCat]=useState("")
+
   const handelFormData = (e) => {
     e.preventDefault();
     setEnglishWord("");
     setUkrainianWord("");
-    props.handleSavedWord(ukrainianWord,englishWord,cat,)
+    props.handleSavedWord(ukrainianWord,englishWord,category,)
     props.closeModal()
     
     
   };
 const handleSelect = (selectedOption) => {
-    setCat(selectedOption.value)
+    handleSetCategory(selectedOption.value)
   }
 
 

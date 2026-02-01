@@ -1,6 +1,7 @@
 import React from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import Select, { components as Components } from "react-select";
+import { useCategory } from "../../context/category/useCategorySet";
 
 const options = [
   { value: "Verb", label: "Verb" },
@@ -25,12 +26,15 @@ const CustomDropdownIndicator = ({ color, ...props }) => {
 };
 const CustomIndicatorSeparator = () => null;
 
-const CustomSelect = ({ variant = "dark", handleSelect }) => {
+const CustomSelect = ({ variant = "dark" }) => {
   const isDark = variant === "white";
+  const { category, handleSetCategory } = useCategory();
+  const selectedValue = options.find(option => option.value === category);
 
   return (
     <div>
       <Select
+       value={selectedValue}
         isSearchable={false}
         components={{
           DropdownIndicator: (props) => (
@@ -41,9 +45,10 @@ const CustomSelect = ({ variant = "dark", handleSelect }) => {
           ),
           IndicatorSeparator: CustomIndicatorSeparator,
         }}
+        
         options={options}
-        placeholder="Categories"
-        onChange={handleSelect}
+        placeholder="Category"
+        onChange={(e)=>handleSetCategory(e.value)}
         styles={{
           dropdownIndicator: (base) => ({
             ...base,

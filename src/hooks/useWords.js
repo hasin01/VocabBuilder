@@ -4,12 +4,14 @@ import { addWord } from "../services/words/addWords";
 import deleteWord from "../services/words/deleteWords";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/auth/useAuth";
+import { useCategory } from "../context/category/useCategorySet";
 
 export const useWords = () => {
   const user = useAuth();
+  const { category ,handleSetCategory } = useCategory();
 
   const [wordsData, setWordsData] = useState([]);
-  const [category, setCategory] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -48,7 +50,8 @@ export const useWords = () => {
   const handleSelect = async (e) => {
     try {
       setLoading(true);
-      setCategory(e.value);
+      handleSetCategory(e.value);
+      console.log(category);
       const data = await getCategoryWords(user.userId, e.value);
       setWordsData(data);
     } catch (error) {
