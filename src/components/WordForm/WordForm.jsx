@@ -8,11 +8,11 @@ import { RxCross2 } from "react-icons/rx";
 import FourColumnTable from "../Table/Table";
 import EditWordForm from "../EditWordForm/EditWordForm";
 import AddWordForm from "../AddWordForm/AddWordForm";
-import { useAuth } from "../../context/useAuth";
 
 import useModalAll from "../../hooks/useModalAll";
 import { useWords } from "../../hooks/Words";
 import { ToastContainer } from "react-toastify";
+import { useAuth } from "../../context/auth/useAuth";
 
 
 

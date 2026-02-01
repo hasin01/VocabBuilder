@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ukrain from "../../img/ukraine.svg";
 import united from "../../img/united.svg";
 import EditWords from "../../services/words/EditWords";
-import { useAuth } from "../../context/useAuth";
+import { useAuth } from "../../context/auth/useAuth";
 
 
 const EditWordForm = ({isOpenModalEditData,closeModal,category,isOpenModalEditDataId}) => {

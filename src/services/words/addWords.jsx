@@ -4,11 +4,18 @@ import { app } from "../../firebaseConfig/firebaseConfig";
 const db = getFirestore(app);
 
 export const addWord = async (userId, categoryName, wordObj) => {
-  const categoryDocRef = doc(db, "users", userId, "categories", categoryName);
+ try {
+   const categoryDocRef = doc(db, "users", userId, "categories", categoryName);
 
   const wordsCollectionRef = collection(categoryDocRef, "words");
 
-  const newWordRef = await addDoc(wordsCollectionRef, wordObj);
+await addDoc(wordsCollectionRef, wordObj);
 
-  console.log("Word added with ID:", newWordRef.id);
+ } catch (error) {
+     if (error.code === 'permission-denied') {
+      throw new Error('No right to add words');
+    }
+    
+ }
+
 };

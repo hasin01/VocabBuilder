@@ -7,7 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { Banner } from "../Banner/Banner";
 import { GoArrowRight } from "react-icons/go";
 import { logOut } from "../../services/auth/signoutservices";
-import { useAuth } from "../../context/useAuth";
+import { useAuth } from "../../context/auth/useAuth";
 
 export default function BurgerMenu() {
   const [open, setOpen] = useState(false);

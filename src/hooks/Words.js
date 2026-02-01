@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/useAuth";
 import { getCategoryWords } from "../services/words/getCategoryWords";
 import { addWord } from "../services/words/addWords";
 import deleteWord from "../services/words/deleteWords";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/auth/useAuth";
 
 export const useWords = () => {
   const user = useAuth();
 
-  const [words, setWords] = useState([]);
   const [wordsData, setWordsData] = useState([]);
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +22,7 @@ export const useWords = () => {
         setWordsData(data);
       } catch (error) {
         setError(error);
-        toast.error("Произошла ошибка при загрузке слов!");
+        toast.error("There was an error loading words.");
       } finally {
         setLoading(false);
       }
@@ -38,10 +37,10 @@ export const useWords = () => {
       await deleteWord(id, category, user.userId);
       const updatedData = await getCategoryWords(user.userId, category);
       setWordsData(updatedData);
-      toast.success("Слово успешно удалено!");
+      toast.success("The word has been successfully deleted.");
     } catch (error) {
       setError(error);
-      toast.error("Произошла ошибка при удалении!");
+      toast.error("An error occurred while deleting");
     } finally {
       setLoading(false);
     }
@@ -54,7 +53,7 @@ export const useWords = () => {
       setWordsData(data);
     } catch (error) {
       setError(error);
-      toast.error("Произошла ошибка при загрузке категорий!");
+      toast.error("There was an error loading categories.");
     } finally {
       setLoading(false);
     }
@@ -63,19 +62,17 @@ export const useWords = () => {
   const handleSavedWord = async (ukrainianWord, englishWord, categoryName) => {
     try {
       setLoading(true);
-      await addWord(user.userId, categoryName, {
+    await addWord(user.userId, categoryName, {
         text: englishWord,
         translation: ukrainianWord,
         level: 1,
         userId: user.userId,
       });
-
-      setWords([...words, { word: ukrainianWord, translation: englishWord }]);
       const updatedData = await getCategoryWords(user.userId, categoryName);
       setWordsData(updatedData);
-      toast.success("Слово успешно добавлено!");
+      toast.success("The word has been added successfully.");
     } catch (error) {
-      toast.error("Произошла ошибка при добавлении!");
+      toast.error("");
       setError(error);
     } finally {
       setLoading(false);
@@ -83,7 +80,6 @@ export const useWords = () => {
   };
   return {
     category,
-    words,
     wordsData,
     loading,
     error,

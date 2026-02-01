@@ -7,8 +7,8 @@ import PublicRoute from './components/PublicRoute/PublicRoute.jsx'
 import Dictionary from './pages/Dictionary.jsx'
 import Recommend from './pages/Recommend.jsx'
 import Training from './pages/Training.jsx'
-import AuthProvider from './context/AuthContext.jsx'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
+import AuthProvider from './context/auth/AuthContext.jsx';
 
 function App() {
   return (

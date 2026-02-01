@@ -1,7 +1,7 @@
 import { Logo } from "../Logo/Logo";
 import { FaUser } from "react-icons/fa";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { useAuth } from "../../context/useAuth";
+import { useAuth } from "../../context/auth/useAuth";
 
 export const Header = () => {
   const user = useAuth();
