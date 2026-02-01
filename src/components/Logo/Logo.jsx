@@ -9,10 +9,10 @@ export const Logo = () => {
 
 
   return (
-    <div >
-    <NavLink to="/" className="flex items-center">
+    <div className="flex items-center">
+    <NavLink to="/" className="flex items-center ">
       <img src={logo} alt="VocabBuilder Logo" />
-      <p className=" ml-4 text-xl font-macpaw  text-3xl ">VocabBuilder</p>
+      <p className=" ml-4 font-macpaw text-xl font-medium ">VocabBuilder</p>
     </NavLink>
     </div>
   );
