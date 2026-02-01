@@ -1,49 +1,49 @@
-import React from 'react'
-import { RiArrowDownSLine } from 'react-icons/ri'
-import Select, { components } from 'react-select'
-import { useWords } from '../../hooks/Words'
+import React from "react";
+import { RiArrowDownSLine } from "react-icons/ri";
+import Select, { components } from "react-select";
 
 const options = [
-  { value: 'Verb', label: 'Verb' },
-  { value: 'Participle', label: 'Participle' },
-  { value: 'Noun', label: 'Noun' },
-  { value: 'Adjective', label: 'Adjective' },
-  { value: 'Pronoun', label: 'Pronoun' },
-  { value: 'Numerals', label: 'Numerals' },
-  { value: 'Adverb', label: 'Adverb' },
-  { value: 'Preposition', label: 'Preposition' },
-  { value: 'Conjuction', label: 'Conjuction' },
-  { value: 'Phrasal verb', label: 'Phrasal verb' },
-  { value: 'Functional phrase', label: 'Functional phrase' },
-]
+  { value: "Verb", label: "Verb" },
+  { value: "Participle", label: "Participle" },
+  { value: "Noun", label: "Noun" },
+  { value: "Adjective", label: "Adjective" },
+  { value: "Pronoun", label: "Pronoun" },
+  { value: "Numerals", label: "Numerals" },
+  { value: "Adverb", label: "Adverb" },
+  { value: "Preposition", label: "Preposition" },
+  { value: "Conjuction", label: "Conjuction" },
+  { value: "Phrasal verb", label: "Phrasal verb" },
+  { value: "Functional phrase", label: "Functional phrase" },
+];
 
 const CustomDropdownIndicator = ({ color, ...props }) => {
   return (
     <components.DropdownIndicator {...props}>
       <RiArrowDownSLine size={"30px"} style={{ color }} />
     </components.DropdownIndicator>
-  )
-}
-const CustomIndicatorSeparator = () => null
+  );
+};
+const CustomIndicatorSeparator = () => null;
 
-const CustomSelect = ({ variant = "dark" ,handleSelect,value }) => {
-
-
-  const isDark = variant === "white"
+const CustomSelect = ({ variant = "dark", handleSelect }) => {
+  const isDark = variant === "white";
 
   return (
     <div>
       <Select
+        isSearchable={false}
         components={{
           DropdownIndicator: (props) => (
-            <CustomDropdownIndicator {...props} color={isDark ? "rgba(248, 248, 248, 1)" : "rgba(18,20,23,1)"} />
+            <CustomDropdownIndicator
+              {...props}
+              color={isDark ? "rgba(248, 248, 248, 1)" : "rgba(18,20,23,1)"}
+            />
           ),
           IndicatorSeparator: CustomIndicatorSeparator,
         }}
         options={options}
         placeholder="Categories"
-
-           onChange={handleSelect} 
+        onChange={handleSelect}
         styles={{
           dropdownIndicator: (base) => ({
             ...base,
@@ -68,13 +68,34 @@ const CustomSelect = ({ variant = "dark" ,handleSelect,value }) => {
             paddingTop: isDark ? "6px" : "8px",
             paddingBottom: isDark ? "6px" : "8px",
             backgroundColor: isDark ? "transparent" : "rgba(248, 248, 248, 1)",
+            boxShadow: "none",
           }),
+          menu: (baseStyles) => ({
+            ...baseStyles,
+            fontFamily: "MacPawPixelDisplay",
+          }),
+          option: (baseStyles, state) => ({
+            ...baseStyles,
+            backgroundColor: "white",
+            color:
+              state.isSelected || state.isFocused
+                ? "rgba(133, 170, 159, 1)"
+                : "black",
+            cursor: "pointer",
+            ":active": {
+              backgroundColor: "white",
+            },
+          }),
+                   singleValue: (baseStyles) => ({
+            ...baseStyles,
+            backgroundColor: "transparent",
+       color: isDark ? "white" : "black"
+          }),
+          
         }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default CustomSelect
- 
-
+export default CustomSelect;
