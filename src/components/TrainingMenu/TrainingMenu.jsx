@@ -1,63 +1,14 @@
-import React, { useEffect, useState } from "react";
 import InputTraining from "../InputTraining/InputTraining";
 import Level from "../Level/Level";
 import LanguageIcon from "../LanguageIcon/LanguageIcon";
 import { Button } from "../Button/Button";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
-import { useAuth } from "../../context/auth/useAuth";
-import {
-  getDueWords,
-  processIncorrectAnswer,
-} from "../../services/training/training";
-import { processCorrectAnswer } from "../../services/training/training";
+import { useTraining } from "../../hooks/useTraining";
+
 
 const TrainingMenu = () => {
-  const [dataWord, setDataWord] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [userAnswer, setUserAnswer] = useState("");
-  const [userAnswerWords, setUserAnswerWords] = useState([]);
 
-  const user = useAuth();
-
-  useEffect(() => {
-    const fetchWordsTraining = async () => {
-      if (user?.userId) {
-        const data = await getDueWords(user.userId);
-        setDataWord(data);
-      }
-    };
-    fetchWordsTraining();
-  }, [user]);
-
-  const currentWord = dataWord[currentIndex];
-
-  const handleComparisonWords = async (e) => {
-    e.preventDefault();
-  };
-
-  const handleNextWords = async () => {
-    if (!currentWord || !userAnswer.trim()) return;
-
-    const isCorrect =
-      userAnswer.trim().toLowerCase() === currentWord.translation.toLowerCase();
-
-    if (isCorrect) {
-      setUserAnswerWords([...userAnswerWords, currentWord.translation]);
-      await processCorrectAnswer(user.userId, currentWord.id, currentWord);
-      console.log(currentIndex);
-    } else {
-      await processIncorrectAnswer(user.userId, currentWord.id, currentWord);
-    }
-    if (currentIndex < dataWord.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setUserAnswer("");
-    } else {
-      setDataWord([]);
-
-      setCurrentIndex(0);
-      setUserAnswer("");
-    }
-  };
+  const  {userAnswer ,currentWord,handleComparisonWords,handleNextWords,setUserAnswer} =useTraining()
 
   if (!currentWord) {
     return <div>Загрузка слов...</div>;
