@@ -8,7 +8,7 @@ import { useCategory } from "../context/category/useCategorySet";
 
 export const useWords = () => {
   const user = useAuth();
-  const { category ,handleSetCategory } = useCategory();
+  const { category, handleSetCategory } = useCategory();
 
   const [wordsData, setWordsData] = useState([]);
 
@@ -65,11 +65,20 @@ export const useWords = () => {
   const handleSavedWord = async (ukrainianWord, englishWord, categoryName) => {
     try {
       setLoading(true);
-    await addWord(user.userId, categoryName, {
-        text: englishWord,
-        translation: ukrainianWord,
-        level: 1,
-        userId: user.userId,
+      await addWord(user.userId, categoryName, {
+  text: englishWord,
+  translation: ukrainianWord,
+  level: 1,
+  userId: user.userId,
+  last_review: new Date(),
+  next_review: new Date(),
+  interval: 1, 
+  ease_factor: 2.5, 
+  repetitions: 0,
+  total_reviews: 0, 
+  correct_streak: 0, 
+  created_at: new Date(),
+  categoryName:categoryName
       });
       const updatedData = await getCategoryWords(user.userId, categoryName);
       setWordsData(updatedData);
