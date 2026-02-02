@@ -1,8 +1,13 @@
 import React from "react";
+import { useAuth } from "../../context/auth/useAuth";
+
+
 
 const Level = ({
+
+
   value,
-  max = 300,
+  max = 1000,
   size = 46,
   strokeWidth = 5,
   color = "text-green-500",
@@ -10,9 +15,10 @@ const Level = ({
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
-  const progress = Math.min(Math.max(value, 0), max);
+  const user = useAuth();
+  const progress = Math.min(Math.max(user?.totalExperience, 0), max);
   const offset = circumference - (progress / max) * circumference;
-
+console.log(user.totalExperience);
   return (
     <div
       className="relative flex items-center justify-center mb-2"
@@ -41,7 +47,7 @@ const Level = ({
         />
       </svg>
 
-      <span className="absolute font-bold left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">20</span>
+      <span className="absolute font-bold left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">{user?.totalExperience }</span>
     </div>
   );
 };
