@@ -49,7 +49,6 @@ export const  useTraining = ( )=>{
       setUserAnswer("");
     } else {
       setDataWord([]);
-
       setCurrentIndex(0);
       setUserAnswer("");
     }

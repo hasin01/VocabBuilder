@@ -4,6 +4,7 @@ import LanguageIcon from "../LanguageIcon/LanguageIcon";
 import { Button } from "../Button/Button";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { useTraining } from "../../hooks/useTraining";
+import AddWordPreview from "../AddWordPreview/AddWordPrewiew";
 
 
 const TrainingMenu = () => {
@@ -11,7 +12,7 @@ const TrainingMenu = () => {
   const  {userAnswer ,currentWord,handleComparisonWords,handleNextWords,setUserAnswer} =useTraining()
 
   if (!currentWord) {
-    return <div>Загрузка слов...</div>;
+    return <div><AddWordPreview/></div>;
   }
 
   return (
