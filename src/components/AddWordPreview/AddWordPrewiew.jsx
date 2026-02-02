@@ -3,6 +3,7 @@ import Desktop from '../../img/desktop-Word.png'
 import Mobile from '../../img/mobile-Word.png'
 import Tablet from '../../img/tablet-Word.png'
 import { Button } from '../Button/Button'
+import { NavLink } from 'react-router-dom'
 
 const AddWordPreview = () => {
   return (
@@ -17,7 +18,11 @@ const AddWordPreview = () => {
     <p className=' font-normal font-macpaw text-sm mb-38'>Please create or add a word to start the workout. We want to improve your vocabulary and develop your knowledge, so please share the words you are interested in adding to your study.</p>
       
       <div className=" mt-2 ">
-        <Button text="Add word" />
+          <NavLink to="/dictionary">
+
+        <Button text="Add word"/>
+
+          </NavLink>
       </div>
       <div className="flex justify-center">
         <button

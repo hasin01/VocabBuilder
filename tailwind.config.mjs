@@ -10,6 +10,7 @@ export default {
         sfpro: ["SF Pro Display", "sans-serif"],
       },
       colors: {
+        modalTextColor:"rgba(252, 252, 252, 0.5)",
         textColor: 'rgba(18, 20, 23, 0.8)',
         buttonColor: '#85AA9F',
         buttonHoverColor: '#A5C0B8',

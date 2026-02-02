@@ -23,28 +23,27 @@ export const getDueWords = async (userId, TotalLimit = 10) => {
     id: doc.id,
     ...doc.data()
   }));
-console.log(words);
+
   return words;
 
 }
 
 
-export const getNewWords = async (userId, TotalLimit = 5) => {
-  const q = query(
-    collectionGroup(db, "words"), 
-    where("userId", "==", userId),
-    where('total_reviews', '==', 0),
-    limit(TotalLimit)
-  );
-  const snapshot = await getDocs(q);
+// export const getNewWords = async (userId, TotalLimit = 5) => {
+//   const q = query(
+//     collectionGroup(db, "words"), 
+//     where("userId", "==", userId),
+//     where('total_reviews', '==', 0),
+//   );
+//   const snapshot = await getDocs(q);
 
-  const words = snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-  
-  return words;
-}
+//   const words = snapshot.docs.map(doc => ({
+//     id: doc.id,
+//     ...doc.data()
+//   }));
+//   console.log(words);
+//   return words;
+// }
 
 export const processCorrectAnswer = async (userId, wordId, word, answerQuality = 4) => {
  

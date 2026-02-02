@@ -1,19 +1,20 @@
-import { collection, getDocs, getFirestore, orderBy, query, where } from "firebase/firestore";
 import { useAuth } from "../context/auth/useAuth";
-import { getAllWords } from "../services/training/getAllFiles";
-import { app } from "../firebaseConfig/firebaseConfig";
 import { useEffect, useState } from "react";
-import { getDueWords, processCorrectAnswer, processIncorrectAnswer } from "../services/training/training";
+import {
+  getDueWords,
+  processCorrectAnswer,
+  processIncorrectAnswer,
+} from "../services/training/training";
 
-
-
-export const  useTraining = ( )=>{
+export const useTraining = () => {
   const user = useAuth();
   const [dataWord, setDataWord] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [userAnswerWords, setUserAnswerWords] = useState([]);
+  const [userAnswerWordsWrong, setUserAnswerWordsWrong] = useState([]);
 
+  const dataLength = dataWord.length;
 
   useEffect(() => {
     const fetchWordsTraining = async () => {
@@ -27,8 +28,10 @@ export const  useTraining = ( )=>{
 
   const currentWord = dataWord[currentIndex];
 
-  const handleComparisonWords = async (e) => {
+  const handleComparisonWords = (e, openModal) => {
     e.preventDefault();
+    openModal({norm:userAnswerWords,wrong:userAnswerWordsWrong});
+    handleNextWords();
   };
 
   const handleNextWords = async () => {
@@ -40,9 +43,9 @@ export const  useTraining = ( )=>{
     if (isCorrect) {
       setUserAnswerWords([...userAnswerWords, currentWord.translation]);
       await processCorrectAnswer(user.userId, currentWord.id, currentWord);
-      console.log(currentIndex);
     } else {
       await processIncorrectAnswer(user.userId, currentWord.id, currentWord);
+      setUserAnswerWordsWrong([...userAnswerWordsWrong, currentWord.translation])
     }
     if (currentIndex < dataWord.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -54,11 +57,14 @@ export const  useTraining = ( )=>{
     }
   };
 
-
-
-  return {userAnswer ,currentWord,handleComparisonWords,handleNextWords,setUserAnswer}
-}
-
-
-
-
+  return {
+    userAnswer,
+    userAnswerWords,
+    dataLength,
+    currentIndex,
+    currentWord,
+    handleComparisonWords,
+    handleNextWords,
+    setUserAnswer,
+  };
+};
