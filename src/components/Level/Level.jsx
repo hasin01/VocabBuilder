@@ -4,8 +4,6 @@ import { useAuth } from "../../context/auth/useAuth";
 
 
 const Level = ({
-
-
   value,
   max = 1000,
   size = 46,
@@ -18,7 +16,6 @@ const Level = ({
   const user = useAuth();
   const progress = Math.min(Math.max(user?.totalExperience, 0), max);
   const offset = circumference - (progress / max) * circumference;
-console.log(user.totalExperience);
   return (
     <div
       className="relative flex items-center justify-center mb-2"
@@ -47,7 +44,7 @@ console.log(user.totalExperience);
         />
       </svg>
 
-      <span className="absolute font-bold left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">{user?.totalExperience }</span>
+      <span className="absolute font-bold left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">{value}</span>
     </div>
   );
 };

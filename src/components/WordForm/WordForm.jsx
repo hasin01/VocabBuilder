@@ -11,7 +11,7 @@ import AddWordForm from "../AddWordForm/AddWordForm";
 
 import useModalAll from "../../hooks/useModalAll";
 import { useWords } from "../../hooks/useWords";
-import { ToastContainer } from "react-toastify";
+
 import { useAuth } from "../../context/auth/useAuth";
 import { useCategory } from "../../context/category/useCategorySet";
 
@@ -122,18 +122,7 @@ const WordForm = () => {
           handleSavedWord={handleSavedWord}
         />
       </Modal>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      
     </div>
   );
 };

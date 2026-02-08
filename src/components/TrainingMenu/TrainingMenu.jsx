@@ -9,6 +9,7 @@ import useModalAll from "../../hooks/useModalAll";
 import Modal from "../Modal/Modal";
 import { RxCross2 } from "react-icons/rx";
 import TrainingModal from "../TrainingModal/TrainingModal";
+import { useAuth } from "../../context/auth/useAuth";
 
 const TrainingMenu = () => {
   const {
@@ -27,13 +28,19 @@ const TrainingMenu = () => {
      isOpenModalTrainingWord,
     closeModalTrainingWord,
   } = useModalAll();
+  const user = useAuth();
+ const userLevel = user?.totalExperience
+function getLevel(userLevel, step = 100) {
+  return Math.floor(userLevel / step);
+}
+
 
   return (
     <div>
       {currentWord ? (
         <form onSubmit={(e) => handleComparisonWords(e, openModalTrainingWord)}>
           <div className="flex justify-end">
-            <Level value={20} />
+            <Level value={getLevel(userLevel)} />
           </div>
           <div className=" relative">
             <div>
@@ -80,7 +87,7 @@ const TrainingMenu = () => {
           </div>
 
           <div className=" mt-2 ">
-            <Button text="Save" />
+            <Button text="Save"  />
           </div>
           <div className="flex justify-center">
             <button

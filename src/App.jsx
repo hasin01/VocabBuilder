@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css'
 import './firebaseConfig/firebaseConfig.js'
 import { Login } from './pages/Login.jsx'
@@ -9,8 +10,10 @@ import Recommend from './pages/Recommend.jsx'
 import Training from './pages/Training.jsx'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
 import {AppProviders}  from './context/AppProviders.jsx';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
+  
 
 
   return (
@@ -31,6 +34,8 @@ function App() {
 
     </Routes>
   </Router>
+  <ToastContainer />
+
 </AppProviders>
   );
 }

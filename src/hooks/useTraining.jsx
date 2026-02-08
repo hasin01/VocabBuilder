@@ -5,6 +5,7 @@ import {
   processCorrectAnswer,
   processIncorrectAnswer,
 } from "../services/training/training";
+import { toast } from "react-toastify";
 
 export const useTraining = () => {
   const user = useAuth();
@@ -21,6 +22,8 @@ export const useTraining = () => {
       if (user?.userId) {
         const data = await getDueWords(user.userId);
         setDataWord(data);
+        
+    
       }
     };
     fetchWordsTraining();
@@ -28,10 +31,30 @@ export const useTraining = () => {
 
   const currentWord = dataWord[currentIndex];
 
-  const handleComparisonWords = (e, openModal) => {
+  const handleComparisonWords = async (e, openModal) => {
     e.preventDefault();
-    openModal({norm:userAnswerWords,wrong:userAnswerWordsWrong});
-    handleNextWords();
+    
+    if (!currentWord || !userAnswer.trim()) return;
+
+    const isCorrect =
+      userAnswer.trim().toLowerCase() === currentWord.translation.toLowerCase();
+
+    let updatedCorrectWords = [...userAnswerWords];
+    let updatedWrongWords = [...userAnswerWordsWrong];
+
+    if (isCorrect) {
+      await processCorrectAnswer(user.userId, currentWord.id, currentWord);
+      updatedCorrectWords = [...userAnswerWords, currentWord.translation];
+      setUserAnswerWords(updatedCorrectWords);
+    } else {
+      await processIncorrectAnswer(user.userId, currentWord.id, currentWord);
+      updatedWrongWords = [...userAnswerWordsWrong, currentWord.translation];
+      setUserAnswerWordsWrong(updatedWrongWords);
+    }
+
+    openModal({ norm: updatedCorrectWords, wrong: updatedWrongWords });
+
+    handleNextWord();
   };
 
   const handleNextWords = async () => {
@@ -41,12 +64,17 @@ export const useTraining = () => {
       userAnswer.trim().toLowerCase() === currentWord.translation.toLowerCase();
 
     if (isCorrect) {
-      setUserAnswerWords([...userAnswerWords, currentWord.translation]);
       await processCorrectAnswer(user.userId, currentWord.id, currentWord);
+      setUserAnswerWords([...userAnswerWords, currentWord.translation]);
     } else {
       await processIncorrectAnswer(user.userId, currentWord.id, currentWord);
-      setUserAnswerWordsWrong([...userAnswerWordsWrong, currentWord.translation])
+      setUserAnswerWordsWrong([...userAnswerWordsWrong, currentWord.translation]);
     }
+    
+    handleNextWord();
+  };
+
+  const handleNextWord = () => {
     if (currentIndex < dataWord.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setUserAnswer("");
