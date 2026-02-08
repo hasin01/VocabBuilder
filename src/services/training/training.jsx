@@ -24,10 +24,14 @@ export const getDueWords = async (userId, TotalLimit = 10) => {
   );
   const snapshot = await getDocs(q);
 
-  const words = snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+  const words = snapshot.docs.map((doc) => {
+    const wordData = doc.data();
+    return {
+      id: doc.id,
+      ...wordData,
+      progress: wordData.progress || 1,
+    };
+  });
   return words;
 };
 
@@ -42,6 +46,7 @@ export const processCorrectAnswer = async (
     repetitions: word.repetitions + 1,
     total_reviews: word.total_reviews + 1,
     last_review: new Date(),
+    progress: Math.min((word.progress || 1) + 1, 10),
   };
 
   const { interval, next_review } = calculateNextInterval(updatedWord);
@@ -69,7 +74,7 @@ export const processCorrectAnswer = async (
 
   await batch.commit();
 
-  toast.success(`Great! +${experienceGained} XP`, {
+  toast.success(`Great! +${experienceGained} XP (${updatedWord.progress})`, {
     position: "top-right",
     autoClose: 3000,
   });
@@ -79,6 +84,7 @@ export const processCorrectAnswer = async (
     experienceGained,
     nextReview: next_review,
     newLevel: updatedWord.repetitions,
+    progress: updatedWord.progress,
   };
 };
 
@@ -91,6 +97,7 @@ export const processIncorrectAnswer = async (userId, wordId, word) => {
     interval: 1,
     next_review: new Date(Date.now() + 24 * 60 * 60 * 1000),
     ease_factor: Math.max(1.3, word.ease_factor - 0.2),
+    progress: Math.max((word.progress || 1) - 2, 1),
   };
 
   const experienceGained = 2;
@@ -113,8 +120,7 @@ export const processIncorrectAnswer = async (userId, wordId, word) => {
   await batch.commit();
 
   toast.warning(
-    `No problem! +${experienceGained} XP 
-for trying`,
+    `Не беда! +${experienceGained} XP (${updatedWord.progress}/10)`,
     {
       position: "top-right",
       autoClose: 4000,
@@ -126,6 +132,7 @@ for trying`,
     experienceGained,
     nextReview: updatedWord.next_review,
     resetProgress: true,
+    progress: updatedWord.progress,
     message: "No problem! The word will be shown again tomorrow.",
   };
 };

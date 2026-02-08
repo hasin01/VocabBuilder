@@ -1,12 +1,9 @@
-import React, { useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import CircularProgress from "../ProgressWords/ProgressWords";
-import CardSelect from "../CardSelect/CardSelect";
+
 
 export default function TableRecommend(props) {
   const columns = [

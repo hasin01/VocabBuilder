@@ -78,7 +78,8 @@ export const useWords = () => {
   total_reviews: 0, 
   correct_streak: 0, 
   created_at: new Date(),
-  categoryName:categoryName
+  categoryName:categoryName,
+  progress:1
       });
       const updatedData = await getCategoryWords(user.userId, categoryName);
       setWordsData(updatedData);

@@ -1,10 +1,12 @@
 import React from "react";
-import { FiSearch } from "react-icons/fi"; // иконка поиска
+import { FiSearch } from "react-icons/fi";
 
-const InputForm = () => {
+const InputForm = ({onValueChange}) => {
+
   return (
     <div className="relative w-full">
       <input
+       onChange={(e) => onValueChange(e.target.value)}
         className="
           rounded-[15px] border border-[rgba(18,20,23,0.1)]
           w-full

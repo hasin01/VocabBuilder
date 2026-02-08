@@ -25,11 +25,14 @@ export default function FourColumnTable(props) {
     {
       accessorKey: "progress",
       header: "Progress",
-      cell: () => (
+      cell: ({row}) => {
+        
+        
+        return(
         <div className="flex items-center justify-center">
-          <CircularProgress value={1} />
+          <CircularProgress value={row.original.progress} />
         </div>
-      ),
+      )}
     },
     {
       accessorKey: "edit",
@@ -65,7 +68,7 @@ export default function FourColumnTable(props) {
   });
 
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full">
       <table className="w-full border rounded-md bg-white table-fixed">
         <thead className="bg-[rgba(133,170,159,0.1)]">
           {table.getHeaderGroups().map((hg) => (

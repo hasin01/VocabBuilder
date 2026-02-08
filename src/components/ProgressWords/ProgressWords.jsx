@@ -2,11 +2,12 @@ import React from "react";
 
 const CircularProgress = ({
   value,
-  max = 300, 
+  max = 10, 
   size = 30,
   strokeWidth = 4,
   color = "text-green-500"
 }) => {
+  console.log(value);
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
