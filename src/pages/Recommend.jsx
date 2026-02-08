@@ -1,15 +1,14 @@
-import React from 'react'
 import { Header } from '../components/Header/Header'
+import RecommendWords from '../components/RecommendWords/RecommendWords'
 
 const Recommend = () => {
-  return (
-   <div className=' container mx-auto px-4' >
+return(
+  <div className=' container mx-auto px-4 bg-gray-50 pb-9 '>
+<Header/>
+<RecommendWords/>
 
-     <Header/>
-    <div>Recommend</div>
-
-   </div>
-  )
+</div>
+)
 }
 
 export default Recommend
