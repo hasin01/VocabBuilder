@@ -23,7 +23,6 @@ const getRecommendWords = async (userId) => {
 
     return snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   } catch (error) {
-    console.log(error);
   }
 };
 

@@ -11,11 +11,7 @@ export const Register = () => {
 const auth = getAuth();
 const user = auth.currentUser;
 
-if (user) {
-    console.log(user.uid);
-} else {
-    console.log("Пользователь не вошел в систему");
-}
+
 
   return (
     <div className=' container mx-auto px-4'>

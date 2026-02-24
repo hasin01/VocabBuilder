@@ -14,7 +14,6 @@ export const getCategoryWords = async (userId, category = "Adjective") => {
 
     return words;
   } catch (error) {
-    console.error("Error fetching category words:", error);
     return [];
   }
 };

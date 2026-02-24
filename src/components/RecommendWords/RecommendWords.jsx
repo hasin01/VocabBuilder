@@ -6,31 +6,36 @@ import CustomSelect from "../CustomSelect/CustomSelect";
 import TableRecommend from "../TableRecommend/TableRecommend";
 import { BsArrowRight } from "react-icons/bs";
 import { searchWordsPrefix } from "../../services/recommend/getInputRecommendWords";
+import { useCategory } from "../../context/category/useCategorySet";
+import { getCategoryWords } from "../../services/words/getCategoryWords";
 
 const RecommendWords = () => {
   const { user } = useAuth() || {};
   const [dataWords, setDataWords] = useState();
-  const [dataW, setDataW] = useState();
 
   useEffect(() => {
+    if (!user?.userId) return;
     getRecommendWords(user.userId).then((red) => setDataWords(red));
-
-    
   }, [user]);
-  const handleValue = async (e) => {
-  const data = await searchWordsPrefix(user.userId,e)
-setDataWords(data)
-console.log(data);
 
+  const handleValue = async (e) => {
+    const data = await searchWordsPrefix(user.userId, e);
+    setDataWords(data);
   };
 
+  const { category } = useCategory();
 
+  const handleValueSelect = async  (e) => {
+   const data = await getCategoryWords(user.userId,e)
+
+setDataWords(data)
+  };
 
     return (
       <div>
         <div className=" flex flex-col gap-1.5 ">
           <InputForm onValueChange={handleValue} />
-          <CustomSelect variant="dark" />
+          <CustomSelect onChange={handleValueSelect} variant="dark"  />
           <p
             className=" mt-5 text-[rgba(18,20,23,0.5)]
     font-macpaw

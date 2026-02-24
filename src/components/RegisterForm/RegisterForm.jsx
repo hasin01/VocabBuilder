@@ -17,7 +17,6 @@ const RegisterForm = () => {
       await registerUser(data);
       reset();
     } catch (error) {
-      console.error("Ошибка регистрации:", error);
     }
   };
 

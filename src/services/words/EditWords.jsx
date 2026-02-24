@@ -14,10 +14,7 @@ translation:textWords.translation,
     
 });
 
-console.log("edit");
-
 } catch (error) {
-    console.log(error);
 }
 
 

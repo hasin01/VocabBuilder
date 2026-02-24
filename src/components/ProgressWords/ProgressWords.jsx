@@ -7,7 +7,6 @@ const CircularProgress = ({
   strokeWidth = 4,
   color = "text-green-500"
 }) => {
-  console.log(value);
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 

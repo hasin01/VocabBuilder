@@ -17,7 +17,6 @@ export default function TableRecommend(props) {
   ];
 
   const data = props.dataWord;
-  console.log(data);
   const table = useReactTable({
     data,
     columns,

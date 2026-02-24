@@ -10,7 +10,6 @@ await signInWithEmailAndPassword(auth, email, password)
   .then(() => {
   })
   .catch((error) => {
-    console.log(error);
   });
 
 

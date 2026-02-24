@@ -9,9 +9,6 @@ export const logOut = async ()=>{
     await signOut(auth).then(() => {
 
 }).catch((error) => {
- console.log(error);
-
-
-});
+ });
 
 }

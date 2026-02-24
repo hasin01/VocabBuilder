@@ -39,7 +39,6 @@ const registerUser = async ({ name, email, password }) => {
       }
     }
   } catch (error) {
-    console.log(error);
   }
 };
 

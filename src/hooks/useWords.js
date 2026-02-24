@@ -51,7 +51,6 @@ export const useWords = () => {
     try {
       setLoading(true);
       handleSetCategory(e.value);
-      console.log(category);
       const data = await getCategoryWords(user.userId, e.value);
       setWordsData(data);
     } catch (error) {

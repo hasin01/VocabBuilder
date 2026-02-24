@@ -15,8 +15,6 @@ import { app } from "../../firebaseConfig/firebaseConfig";
 const db = getFirestore(app);
 
 export async function searchWordsPrefix(userId, searchTerm) {
-
-  console.log(userId, searchTerm);
   const q = query(
     collectionGroup(db, "words"),
     where("userId", "==", userId),

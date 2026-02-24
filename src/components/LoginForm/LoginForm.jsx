@@ -17,7 +17,6 @@ const LoginForm = () => {
       await loginUser(data);
       reset(); 
     } catch (error) {
-      console.error("Ошибка входа:", error);
     }
   };
 

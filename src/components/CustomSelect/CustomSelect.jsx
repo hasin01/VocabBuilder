@@ -26,10 +26,16 @@ const CustomDropdownIndicator = ({ color, ...props }) => {
 };
 const CustomIndicatorSeparator = () => null;
 
-const CustomSelect = ({ variant = "dark" }) => {
+const CustomSelect = ({ variant = "dark", onChange }) => {
   const isDark = variant === "white";
   const { category, handleSetCategory } = useCategory();
   const selectedValue = options.find(option => option.value === category);
+
+  const handleChange = (e) => {
+    handleSetCategory(e.value);
+    onChange && onChange(e.value);
+  };
+
 
   return (
     <div>
@@ -48,7 +54,7 @@ const CustomSelect = ({ variant = "dark" }) => {
         
         options={options}
         placeholder="Category"
-        onChange={(e)=>handleSetCategory(e.value)}
+        onChange={handleChange}
         styles={{
           dropdownIndicator: (base) => ({
             ...base,
