@@ -13,7 +13,7 @@ const Level = ({
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
-  const user = useAuth();
+  const { user } = useAuth() || {};
   const progress = Math.min(Math.max(user?.totalExperience, 0), max);
   const offset = circumference - (progress / max) * circumference;
   return (

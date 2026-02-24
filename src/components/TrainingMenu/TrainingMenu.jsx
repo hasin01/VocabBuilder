@@ -28,7 +28,7 @@ const TrainingMenu = () => {
      isOpenModalTrainingWord,
     closeModalTrainingWord,
   } = useModalAll();
-  const user = useAuth();
+  const { user } = useAuth() || {};
  const userLevel = user?.totalExperience
 function getLevel(userLevel, step = 100) {
   return Math.floor(userLevel / step);

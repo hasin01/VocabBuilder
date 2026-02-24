@@ -4,7 +4,7 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useAuth } from "../../context/auth/useAuth";
 
 export const Header = () => {
-  const user = useAuth();
+  const {user} = useAuth();
 
   return (
     <div className="container   mb-8 mx-auto py-4 flex items-center justify-between ">

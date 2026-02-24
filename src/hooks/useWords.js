@@ -7,7 +7,7 @@ import { useAuth } from "../context/auth/useAuth";
 import { useCategory } from "../context/category/useCategorySet";
 
 export const useWords = () => {
-  const user = useAuth();
+  const { user } = useAuth() || {};
   const { category, handleSetCategory } = useCategory();
 
   const [wordsData, setWordsData] = useState([]);

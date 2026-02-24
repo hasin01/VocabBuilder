@@ -6,8 +6,7 @@ import { useAuth } from '../context/auth/useAuth'
 
 
 const Training = () => {
-
-  
+  const { user } = useAuth() || {};
   return (
     <div className=' container mx-auto px-4 bg-gray-50 '>
 

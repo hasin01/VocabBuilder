@@ -8,7 +8,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { searchWordsPrefix } from "../../services/recommend/getInputRecommendWords";
 
 const RecommendWords = () => {
-  const user = useAuth();
+  const { user } = useAuth() || {};
   const [dataWords, setDataWords] = useState();
   const [dataW, setDataW] = useState();
 

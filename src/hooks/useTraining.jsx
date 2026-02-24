@@ -8,7 +8,7 @@ import {
 import { toast } from "react-toastify";
 
 export const useTraining = () => {
-  const user = useAuth();
+  const { user } = useAuth() || {};
   const [dataWord, setDataWord] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");

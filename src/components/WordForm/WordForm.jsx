@@ -31,7 +31,7 @@ const WordForm = () => {
     closeModalEdit,
   } = useModalAll();
 
-  const user = useAuth();
+  const { user } = useAuth() || {};
   const {
     wordsData,
     loading,

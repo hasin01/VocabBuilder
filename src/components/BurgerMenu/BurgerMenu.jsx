@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { Banner } from "../Banner/Banner";
 import { GoArrowRight } from "react-icons/go";
@@ -13,7 +13,7 @@ export default function BurgerMenu() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef(null);
   const btnRef = useRef(null);
-  const user = useAuth();
+  const {user} = useAuth();
 
 
 

@@ -1,17 +1,16 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../context/auth/useAuth';
+import Loading from '../Loading/Loading';
 
 const PrivateRoute = () => {
+  const authData = useAuth();
+  const { user, loading } = authData || {};
 
-  const user = useAuth();
-  const location = useLocation();
-
-
-  if (user && (location.pathname === '/login' || location.pathname === '/register')) {
-    return <Navigate to="/dictionary" />;
+  if (loading) {
+    return <Loading />;
   }
 
   return user ? <Outlet /> : <Navigate to="/login" />;
 }
-
+  
 export default PrivateRoute

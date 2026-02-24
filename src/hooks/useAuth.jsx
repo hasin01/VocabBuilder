@@ -5,6 +5,7 @@ import { app } from "../firebaseConfig/firebaseConfig";
 
 const useAuthUser = () => {
   const [userInfo, setUserInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
   const db = getFirestore(app);
   const auth = getAuth();
   useEffect(() => {
@@ -22,12 +23,13 @@ const useAuthUser = () => {
       } else {
         setUserInfo(null);
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, [auth, db]);
 
-  return userInfo;
+  return { user: userInfo, loading };
 };
 
 export default useAuthUser;
